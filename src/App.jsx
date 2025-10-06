@@ -1,6 +1,10 @@
-function App() {
+import { useContext } from "react";
+import { ContextApp } from "./context/Context-app";
 
-  return (<div>hello world</div>  );
+function App() {
+  const { theme } = useContext(ContextApp);
+
+  return <div></div>;
 }
 
 export default App;
