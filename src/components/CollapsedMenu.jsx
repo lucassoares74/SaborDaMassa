@@ -7,9 +7,9 @@ function CollapsedMenu() {
     useContext(ContextApp);
   return (
     <div
-      className={`bg-[#F5F5DC] p-4 lg:hidden w-1/2 h-screen absolute top-21 left-0 z-50 transform ${
-        IsCollapsedMenuOpen ? "" : "-translate-x-full transition"
-      }-transform duration-500 ease-out`}
+      className={`bg-[#F5F5DC] p-4 lg:hidden w-1/2 max-h-screen absolute top-21 left-0 z-50 transform ${
+        IsCollapsedMenuOpen ? "" : "-translate-x-full "
+      }transition-transform duration-500 ease-out`}
     >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col text-2xl poppins gap-8">
