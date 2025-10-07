@@ -1,9 +1,14 @@
+import {useContext} from "react";
+import { ContextApp } from './../context/Context-app';
+
+
 function BannerHome() {
+  const {Banner} = useContext(ContextApp)
   return (
     <div className="">
       <div class="relative w-full h-[500px] bg-gradient-to-r from-green-600 via-white to-green-600 overflow-hidden flex items-center justify-start px-8">
         <img
-          src="https://cdn.pixabay.com/video/2024/02/26/202004-916894674_tiny.jpg"
+          src={Banner}
           alt="Prato de massa"
           class="absolute right-0 top-0 w-full h-full object-cover opacity-100 z-0"
         />
