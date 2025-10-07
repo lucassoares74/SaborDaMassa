@@ -1,6 +1,11 @@
+import { useContext } from "react";
+
+
 import { Facebook, Instagram } from "lucide-react";
+import { ContextApp } from "../context/Context-app";
 
 function Footer() {
+  const {ChefImgAndName} = useContext(ContextApp)
   return (
     <div className="bg-[#2E4F4F] p-20 ">
       <div className="flex justify-center">
@@ -33,10 +38,10 @@ function Footer() {
             <h1 className="poppins text-2xl text-white">Chefe</h1>
             <img
               className="h-[120px] rounded-full"
-              src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCWbJ4HzAtNq650CpHcfLtG0oNdiLccLkgeJAEUGIAIibiRVI9PSdFttZu21umWAoAH3TzPJAybcd7voH0GpWKyaFQEA0MnbYp1wuinW0"
+              src={ChefImgAndName.img}
               alt=""
             />
-            <h1 className="text-white poppins">Eric Jacquin</h1>
+            <h1 className="text-white poppins">{ChefImgAndName.name}</h1>
           </div>
         </div>
       </div>
