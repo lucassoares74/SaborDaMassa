@@ -13,8 +13,8 @@ function Footer() {
       </div>
 
       <div className="grid lg:grid-cols-3 mt-6 gap-4 lg:gap-0">
-        <div className="flex flex-col lg:items-center">
-          <h1 className="text-2xl poppins text-white">
+        <div className="flex flex-col lg:items-center text-[12px]">
+          <h1 className=" poppins text-white">
             localização e informações
           </h1>
           <h1 className=" poppins text-white">CEP: 25225-000</h1>

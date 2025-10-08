@@ -8,10 +8,10 @@ import Featured from "./components/Featured";
 import Footer from "./components/Footer";
 
 function App() {
-  const { theme } = useContext(ContextApp);
+  const { IsCollapsedMenuOpen } = useContext(ContextApp);
 
   return (
-    <div className="relative">
+    <div className={IsCollapsedMenuOpen?"fixed w-[100%]":""}>
       <CollapsedMenu></CollapsedMenu>
       <Header></Header>
       <BannerHome></BannerHome>
