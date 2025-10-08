@@ -22,12 +22,9 @@ function BannerHome() {
           <p class="text-lg text-gray-400 mb-6">
             Tradicionalmente fresco, moderadamente delicioso.
           </p>
-          <a
-            href="#cardapio"
-            class="inline-block bg-[#F5F5DC] hover:bg-amber-300 text-green-900 lato py-2 px-6 rounded-lg transition duration-300"
-          >
+          <button className="inline-block bg-[#F5F5DC] hover:bg-amber-300 text-green-900 lato py-2 px-6 rounded-lg transition duration-300">
             <Link to="/Cardapio">Ver Cardápio</Link>
-          </a>
+          </button>
         </div>
       </div>
     </div>
