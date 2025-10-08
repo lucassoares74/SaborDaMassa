@@ -3,6 +3,7 @@ import CollapsedMenu from "./../components/CollapsedMenu";
 import { useContext } from "react";
 import { ContextApp } from "./../context/Context-app";
 import CardapioContent from "../components/CardapioContent";
+import Footer from './../components/Footer';
 
 function Cardapio() {
   const { IsCollapsedMenuOpen } = useContext(ContextApp);
@@ -12,6 +13,7 @@ function Cardapio() {
       <CollapsedMenu></CollapsedMenu>
       <Header></Header>
       <CardapioContent></CardapioContent>
+      <Footer></Footer>
     </div>
   );
 }

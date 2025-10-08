@@ -3,9 +3,10 @@ import { createContext, useState } from "react";
 export const ContextApp = createContext();
 
 export const ContextProvider = ({ children }) => {
+  const [isMenuCardapioOpen, setisMenuCardapioOpen] = useState(false);
   const [ChefImgAndName, setChefImgAndName] = useState({
-    img:"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCWbJ4HzAtNq650CpHcfLtG0oNdiLccLkgeJAEUGIAIibiRVI9PSdFttZu21umWAoAH3TzPJAybcd7voH0GpWKyaFQEA0MnbYp1wuinW0",
-    name:"Eric Jaquin"
+    img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCWbJ4HzAtNq650CpHcfLtG0oNdiLccLkgeJAEUGIAIibiRVI9PSdFttZu21umWAoAH3TzPJAybcd7voH0GpWKyaFQEA0MnbYp1wuinW0",
+    name: "Eric Jaquin",
   });
   const [Banner, setBanner] = useState(
     "https://cdn.pixabay.com/video/2024/02/26/202004-916894674_tiny.jpg"
@@ -48,6 +49,8 @@ export const ContextProvider = ({ children }) => {
         BreveImg,
         FeatureList,
         ChefImgAndName,
+        isMenuCardapioOpen,
+        setisMenuCardapioOpen,
       }}
     >
       {children}
