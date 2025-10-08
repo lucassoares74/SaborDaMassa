@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ContextApp } from "./../context/Context-app";
 import { Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function CollapsedMenu() {
   const { IsCollapsedMenuOpen, setIsCollapsedMenuOpen } =
@@ -15,10 +16,10 @@ function CollapsedMenu() {
     >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col text-2xl poppins gap-8">
-          <button className="hover:text-amber-300">Inicio</button>
-          <button className="hover:text-amber-300">Cardápio</button>
-          <button className="hover:text-amber-300">Contato</button>
-          <button className="hover:text-amber-300">Sobre</button>
+          <button className="hover:text-amber-300"><Link to="/">Inicio</Link></button>
+          <button className="hover:text-amber-300"><Link to="/Cardapio">Cardapio</Link></button>
+          <button className="hover:text-amber-300"><Link to="/">Contato</Link></button>
+          <button className="hover:text-amber-300"><Link to="/">Sobre</Link></button>
         </div>
       </div>
     </div>

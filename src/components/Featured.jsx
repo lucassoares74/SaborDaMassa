@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ContextApp } from "../context/Context-app";
+import { Link } from "react-router-dom";
 
 function Featured() {
     const {FeatureList} = useContext(ContextApp)
@@ -29,7 +30,7 @@ function Featured() {
           </div>
         </div>
         <div className="flex justify-center">
-          <button className="poppins font-bold bg-[#F5F5DC] p-2 hover:bg-amber-300">Ver Cardapio Completo</button>
+          <button className="poppins font-bold bg-[#F5F5DC] p-2 hover:bg-amber-300"> <Link to="/Cardapio">Ver Cardapio Completo</Link></button>
         </div>
       </div>
     </div>

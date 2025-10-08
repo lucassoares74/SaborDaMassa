@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ContextProvider } from "./context/Context-app.jsx";
+import Cardapio from './pages/Cardapio';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,14 @@ const router = createBrowserRouter([
       </ContextProvider>
     ),
   },
+  {
+    path: "/Cardapio",
+    element: (
+      <ContextProvider>
+        <Cardapio />
+      </ContextProvider>
+    ),
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(

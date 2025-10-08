@@ -1,9 +1,9 @@
-import {useContext} from "react";
-import { ContextApp } from './../context/Context-app';
-
+import { useContext } from "react";
+import { ContextApp } from "./../context/Context-app";
+import { Link } from "react-router-dom";
 
 function BannerHome() {
-  const {Banner} = useContext(ContextApp)
+  const { Banner } = useContext(ContextApp);
   return (
     <div className="">
       <div class="relative w-full h-[500px] bg-gradient-to-r from-green-600 via-white to-green-600 overflow-hidden flex items-center justify-start px-8">
@@ -26,7 +26,7 @@ function BannerHome() {
             href="#cardapio"
             class="inline-block bg-[#F5F5DC] hover:bg-amber-300 text-green-900 lato py-2 px-6 rounded-lg transition duration-300"
           >
-            Ver Cardápio
+            <Link to="/Cardapio">Ver Cardápio</Link>
           </a>
         </div>
       </div>
