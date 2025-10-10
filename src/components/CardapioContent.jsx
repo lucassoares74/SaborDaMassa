@@ -177,7 +177,7 @@ function CardapioContent() {
             <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-y-12 gap-6">
               {itensPaginados.map((elements) => {
                 return (
-                  <div
+                  <div key={elements.id}
                     onClick={() => {
                       navigate("/Single?id="+elements.id);
                       console.log(elements.id);

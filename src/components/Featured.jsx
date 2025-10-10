@@ -19,7 +19,7 @@ function Featured() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10  ">
             {FullList.slice(0,4).map((a) => {
               return (
-                <div
+                <div key={a.id}
                   onClick={() => {
                     navigate("/Single?id=" + a.id);
                     console.log(a.id);
