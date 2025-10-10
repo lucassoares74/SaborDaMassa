@@ -203,12 +203,32 @@ export const ContextProvider = ({ children }) => {
     },
   ]);
 
-  const itemsPerPage = 8; // quantidade de itens por página
+  const [itemsPerPage, setitemsPerPage] = useState(8); // quantidade de itens por página
   const [paginaAtual, setPaginaAtual] = useState(1);
   const totalPages = Math.ceil(FinalList.length / itemsPerPage);
   const startIndex = (paginaAtual - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const itensPaginados = FinalList.slice(startIndex, endIndex);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    // Limpa o listener ao desmontar
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+  useEffect(() => {
+    if(width <1024){
+      setitemsPerPage(9)
+    }else{
+      setitemsPerPage(8)
+    }
+  }, [width]);
 
   function FilterListByCategory(Category) {
     const filtred = FullList.filter((a) => a.category === Category);
@@ -216,7 +236,7 @@ export const ContextProvider = ({ children }) => {
     setFinalList(filtred);
   }
   useEffect(() => {
-    setPaginaAtual(1)
+    setPaginaAtual(1);
   }, [FinalList]);
 
   function filterListByName(name) {
