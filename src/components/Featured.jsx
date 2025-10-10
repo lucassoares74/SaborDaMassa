@@ -14,7 +14,7 @@ function Featured() {
           </h1>
         </div>
         <div className="flex justify-center text-[#2E4F4F]">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10  ">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10  ">
             {FeatureList.map((a) => {
               return (
                 <div
