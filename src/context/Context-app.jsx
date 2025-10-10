@@ -180,30 +180,8 @@ export const ContextProvider = ({ children }) => {
   const [BreveImg, setBreveImg] = useState(
     "https://revistaespresso.com.br/wordpress/wp-content/uploads/2020/10/image008-1024x701.jpg"
   );
-  const [FeatureList, setFeatureList] = useState([
-    {
-      title: "Macarrão",
-      description: "Massa cozida com molho de tomate e queijo.",
-      img: "https://www.sabornamesa.com.br/media/k2/items/cache/58d52ea025b256e4ce8690fddc53cbd4_XL.jpg",
-    },
-    {
-      title: "Feijoada",
-      description:
-        "Feijão preto com carnes variadas, servido com arroz e laranja.",
-      img: "https://static.itdg.com.br/images/640-400/4183f4a52eadb0d86eed283e54e0020c/355811-original.jpg",
-    },
-    {
-      title: "Moqueca",
-      description:
-        "Peixe cozido com leite de coco, azeite de dendê e pimentões.",
-      img: "https://www.sabornamesa.com.br/media/k2/items/cache/77df7a7d1a333dea87cc5a7a24bfa2c8_XL.jpg",
-    },
-    {
-      title: "Escondidinho",
-      description: "Purê de mandioca recheado com carne seca desfiada.",
-      img: "https://static.itdg.com.br/images/640-400/539c50423ad8da0a8dcab288bb382aa2/337965-original.jpg",
-    },
-  ]);
+
+  const [FinalSingleList, setFinalSingleList] = useState();
 
   const [itemsPerPage, setitemsPerPage] = useState(8); // quantidade de itens por página
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -214,7 +192,8 @@ export const ContextProvider = ({ children }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    setFinalList(FullList)
+    setFinalList(FullList);
+    setPaginaAtual(1);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -251,6 +230,10 @@ export const ContextProvider = ({ children }) => {
     );
     setFinalList(filtred);
   }
+  function FilterSingle(b) {
+    const filtred = FullList.filter((a) => a.id === b);
+    setFinalSingleList(filtred);
+  }
 
   return (
     <ContextApp.Provider
@@ -259,7 +242,6 @@ export const ContextProvider = ({ children }) => {
         IsCollapsedMenuOpen,
         setIsCollapsedMenuOpen,
         BreveImg,
-        FeatureList,
         ChefImgAndName,
         isMenuCardapioOpen,
         setisMenuCardapioOpen,
@@ -271,6 +253,9 @@ export const ContextProvider = ({ children }) => {
         paginaAtual,
         setPaginaAtual,
         totalPages,
+        FullList,
+        FinalSingleList,
+        FilterSingle,
       }}
     >
       {children}

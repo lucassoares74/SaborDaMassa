@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { ContextApp } from "../context/Context-app";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Featured() {
-  const { FeatureList } = useContext(ContextApp);
+  const { FullList} = useContext(ContextApp);
+  const navigate = useNavigate();
 
   return (
     <div className="bg-[#2E4F4F] p-6">
@@ -15,9 +17,13 @@ function Featured() {
         </div>
         <div className="flex justify-center text-[#2E4F4F]">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10  ">
-            {FeatureList.map((a) => {
+            {FullList.slice(0,4).map((a) => {
               return (
                 <div
+                  onClick={() => {
+                    navigate("/Single?id=" + a.id);
+                    console.log(a.id);
+                  }}
                   className={` rounded-md shadow-2xl shadow-black  bg-center bg-cover grid grid-rows-2 h-[190px] w-[210px] hover:scale-110`}
                   style={{ backgroundImage: `url(${a.img})` }}
                 >

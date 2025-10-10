@@ -1,8 +1,10 @@
 import { ArrowDownNarrowWide, Target } from "lucide-react";
 import { useContext } from "react";
 import { ContextApp } from "../context/Context-app";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function CardapioContent() {
+  const navigate = useNavigate();
   const {
     isMenuCardapioOpen,
     setisMenuCardapioOpen,
@@ -15,9 +17,9 @@ function CardapioContent() {
     paginaAtual,
     setPaginaAtual,
     totalPages,
+    FilterSingle,
+    FinalSingleList,
   } = useContext(ContextApp);
- 
-
 
   return (
     <div>
@@ -176,6 +178,10 @@ function CardapioContent() {
               {itensPaginados.map((elements) => {
                 return (
                   <div
+                    onClick={() => {
+                      navigate("/Single?id="+elements.id);
+                      console.log(elements.id);
+                    }}
                     className={` rounded-md shadow-2xl shadow-black  bg-center bg-cover grid grid-rows-2 h-[190px] w-[210px] hover:scale-110`}
                     style={{
                       backgroundImage: `url(${elements.img})`,
