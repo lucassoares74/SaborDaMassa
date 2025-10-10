@@ -1,8 +1,10 @@
 import { createContext, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export const ContextApp = createContext();
 
 export const ContextProvider = ({ children }) => {
+  const location = useLocation();
   const [FullList, setFullList] = useState([
     {
       id: 1,
@@ -212,6 +214,10 @@ export const ContextProvider = ({ children }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+    setFinalList(FullList)
+  }, [location.pathname]);
+
+  useEffect(() => {
     function handleResize() {
       setWidth(window.innerWidth);
     }
@@ -221,12 +227,12 @@ export const ContextProvider = ({ children }) => {
     // Limpa o listener ao desmontar
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
+
   useEffect(() => {
-    if(width <1024){
-      setitemsPerPage(9)
-    }else{
-      setitemsPerPage(8)
+    if (width < 1024) {
+      setitemsPerPage(9);
+    } else {
+      setitemsPerPage(8);
     }
   }, [width]);
 
