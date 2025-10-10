@@ -5,6 +5,8 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ContextProvider } from "./context/Context-app.jsx";
 import Cardapio from './pages/Cardapio';
+import Single from './pages/Single';
+
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
     element: (
       <ContextProvider>
         <Cardapio />
+      </ContextProvider>
+    ),
+  },
+   {
+    path: "/Single",
+    element: (
+      <ContextProvider>
+        <Single />
       </ContextProvider>
     ),
   }
