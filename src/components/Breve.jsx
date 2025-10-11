@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ContextApp } from "../context/Context-app";
 
 function Breve() {
-  const { BreveImg } = useContext(ContextApp);
+  const { FullList } = useContext(ContextApp);
   return (
     <div className="bg-[#F5F5DC] p-4 flex h-[200px] justify-center">
       <div className=" grid lg:grid-cols-[500px_1fr]">
@@ -19,7 +19,7 @@ function Breve() {
           </p>
         </div>
         <div>
-          <img className="h-[170px] hidden lg:block" src={BreveImg} alt="" />
+          <img className="h-[170px] hidden lg:block" src={FullList.breveimg} alt="" />
         </div>
       </div>
     </div>

@@ -3,12 +3,12 @@ import { ContextApp } from "./../context/Context-app";
 import { Link } from "react-router-dom";
 
 function BannerHome() {
-  const { Banner } = useContext(ContextApp);
+  const { FullList } = useContext(ContextApp);
   return (
     <div className="">
       <div class="relative w-full h-[500px] bg-gradient-to-r from-green-600 via-white to-green-600 overflow-hidden flex items-center justify-start px-8">
         <img
-          src={Banner}
+          src={FullList.banner}
           alt="Prato de massa"
           class="absolute right-0 top-0 w-full h-full object-cover opacity-100 z-0"
         />

@@ -19,6 +19,7 @@ function CardapioContent() {
     totalPages,
     FilterSingle,
     FinalSingleList,
+    FullList,
   } = useContext(ContextApp);
 
   return (
@@ -52,15 +53,7 @@ function CardapioContent() {
                 type="text"
                 placeholder="Buscar..."
               />
-              <button
-                onClick={(e) => {
-                  FilterListByCategory(e.target.innerText);
-                  console.log(e.target.innerText);
-                }}
-                className="border-b-1 mb-4 text-left hover:text-amber-300"
-              >
-                Massas
-              </button>
+
               <button
                 onClick={(e) => {
                   FilterListByCategory(e.target.innerText);
@@ -118,68 +111,29 @@ function CardapioContent() {
               type="text"
               placeholder="Buscar..."
             />
-            <button
-              onClick={(e) => {
-                FilterListByCategory(e.target.innerText);
-                console.log(e.target.innerText);
-              }}
-              className="border-b-1 mb-4 text-left hover:text-amber-300"
-            >
-              Massas
-            </button>
-            <button
-              onClick={(e) => {
-                FilterListByCategory(e.target.innerText);
-                console.log(e.target.innerText);
-              }}
-              className="border-b-1 mb-4 text-left hover:text-amber-300"
-            >
-              Sanduiches
-            </button>
-            <button
-              onClick={(e) => {
-                FilterListByCategory(e.target.innerText);
-                console.log(e.target.innerText);
-              }}
-              className="border-b-1 mb-4 text-left hover:text-amber-300"
-            >
-              Salgados
-            </button>
-            <button
-              onClick={(e) => {
-                FilterListByCategory(e.target.innerText);
-                console.log(e.target.innerText);
-              }}
-              className="border-b-1 mb-4 text-left hover:text-amber-300"
-            >
-              Doces
-            </button>
-            <button
-              onClick={(e) => {
-                FilterListByCategory(e.target.innerText);
-                console.log(e.target.innerText);
-              }}
-              className="border-b-1 mb-4 text-left hover:text-amber-300"
-            >
-              Bebidas Quentes
-            </button>
-            <button
-              onClick={(e) => {
-                FilterListByCategory(e.target.innerText);
-                console.log(e.target.innerText);
-              }}
-              className="border-b-1 mb-4 text-left hover:text-amber-300"
-            >
-              Bebidas frias
-            </button>
+
+            {FullList.categorias.map((a) => {
+              return (
+                <button
+                  onClick={(e) => {
+                    FilterListByCategory(e.target.innerText);
+                    console.log(e.target.innerText);
+                  }}
+                  className="border-b-1 mb-4 text-left hover:text-amber-300"
+                >
+                  {a}
+                </button>
+              );
+            })}
           </div>
           <div className="flex flex-col items-center gap-8">
             <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-y-12 gap-6">
               {itensPaginados.map((elements) => {
                 return (
-                  <div key={elements.id}
+                  <div
+                    key={elements.id}
                     onClick={() => {
-                      navigate("/Single?id="+elements.id);
+                      navigate("/Single?id=" + elements.id);
                       console.log(elements.id);
                     }}
                     className={` rounded-md shadow-2xl shadow-black  bg-center bg-cover grid grid-rows-2 h-[190px] w-[210px] hover:scale-110`}

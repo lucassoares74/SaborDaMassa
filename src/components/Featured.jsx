@@ -17,7 +17,7 @@ function Featured() {
         </div>
         <div className="flex justify-center text-[#2E4F4F]">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10  ">
-            {FullList.slice(0,4).map((a) => {
+            {FullList.produtos.slice(0,4).map((a) => {
               return (
                 <div key={a.id}
                   onClick={() => {
