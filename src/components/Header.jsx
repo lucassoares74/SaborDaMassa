@@ -2,9 +2,14 @@ import { Menu } from "lucide-react";
 import { useContext } from "react";
 import { ContextApp } from "../context/Context-app";
 import { Link } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
 function Header() {
-  const { IsCollapsedMenuOpen, setIsCollapsedMenuOpen } =
-    useContext(ContextApp);
+  const {
+    IsCollapsedMenuOpen,
+    setIsCollapsedMenuOpen,
+    setIsCartOpen,
+    IsCartOpen,
+  } = useContext(ContextApp);
   return (
     <div className="poppins bg-[#2E4F4F] lg:p-6 pt-4 text-2xl text-white">
       <div className="grid lg:grid-cols-3 items-center gap-4">
@@ -23,9 +28,12 @@ function Header() {
             src="/logo.png"
             alt=""
           />
-          <div className="flex justify-center lg:hidden">
-            <button className="bg-[#F5F5DC] text-green-900 p-2 rounded-md hover:bg-amber-300 text-[14px] ">
-              Faça seu pedido
+          <div className="flex lg:hidden justify-end mr-4 w-full">
+            <button
+              onClick={() => setIsCartOpen(!IsCartOpen)}
+              className="bg-[#F5F5DC] text-green-900 p-2 rounded-md hover:bg-amber-300 text-[14px] "
+            >
+              <ShoppingCart></ShoppingCart>
             </button>
           </div>
         </div>
@@ -46,8 +54,11 @@ function Header() {
           </div>
         </div>
         <div className="  flex lg:justify-end justify-center items-center gap-4 ">
-          <button className="bg-[#F5F5DC] text-green-900 p-2 rounded-md hover:bg-amber-300 lg:block hidden">
-            Faça seu pedido
+          <button
+            onClick={() => setIsCartOpen(!IsCartOpen)}
+            className="bg-[#F5F5DC] text-green-900 p-2 rounded-md hover:bg-amber-300 lg:block hidden"
+          >
+            <ShoppingCart></ShoppingCart>
           </button>
         </div>
       </div>

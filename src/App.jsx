@@ -6,12 +6,15 @@ import CollapsedMenu from "./components/CollapsedMenu";
 import Breve from "./components/Breve";
 import Featured from "./components/Featured";
 import Footer from "./components/Footer";
+import Cart from './components/Cart';
+
 
 function App() {
   const { IsCollapsedMenuOpen } = useContext(ContextApp);
 
   return (
     <div className={IsCollapsedMenuOpen?"fixed w-[100%]":""}>
+      <Cart></Cart>
       <CollapsedMenu></CollapsedMenu>
       <Header></Header>
       <BannerHome></BannerHome>

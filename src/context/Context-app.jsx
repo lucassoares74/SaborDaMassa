@@ -196,7 +196,7 @@ export const ContextProvider = ({ children }) => {
   const endIndex = startIndex + itemsPerPage;
   const itensPaginados = FinalList.slice(startIndex, endIndex);
   const [width, setWidth] = useState(window.innerWidth);
-
+  const [IsCartOpen, setIsCartOpen] = useState(true);
   useEffect(() => {
     setFinalList(FullList.produtos);
     setPaginaAtual(1);
@@ -259,6 +259,8 @@ export const ContextProvider = ({ children }) => {
         FullList,
         FinalSingleList,
         FilterSingle,
+        IsCartOpen,
+        setIsCartOpen,
       }}
     >
       {children}

@@ -54,51 +54,19 @@ function CardapioContent() {
                 placeholder="Buscar..."
               />
 
-              <button
-                onClick={(e) => {
-                  FilterListByCategory(e.target.innerText);
-                  console.log(e.target.innerText);
-                }}
-                className="border-b-1 mb-4 text-left hover:text-amber-300"
-              >
-                Sanduiches
-              </button>
-              <button
-                onClick={(e) => {
-                  FilterListByCategory(e.target.innerText);
-                  console.log(e.target.innerText);
-                }}
-                className="border-b-1 mb-4 text-left hover:text-amber-300"
-              >
-                Salgados
-              </button>
-              <button
-                onClick={(e) => {
-                  FilterListByCategory(e.target.innerText);
-                  console.log(e.target.innerText);
-                }}
-                className="border-b-1 mb-4 text-left hover:text-amber-300"
-              >
-                Doces
-              </button>
-              <button
-                onClick={(e) => {
-                  FilterListByCategory(e.target.innerText);
-                  console.log(e.target.innerText);
-                }}
-                className="border-b-1 mb-4 text-left hover:text-amber-300"
-              >
-                Bebidas Quentes
-              </button>
-              <button
-                onClick={(e) => {
-                  FilterListByCategory(e.target.innerText);
-                  console.log(e.target.innerText);
-                }}
-                className="border-b-1 mb-4 text-left hover:text-amber-300"
-              >
-                Bebidas frias
-              </button>
+              {FullList.categorias.map((a) => {
+                return (
+                  <button
+                    onClick={(e) => {
+                      FilterListByCategory(e.target.innerText);
+                      console.log(e.target.innerText);
+                    }}
+                    className="border-b-1 mb-4 text-left hover:text-amber-300"
+                  >
+                    {a}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
