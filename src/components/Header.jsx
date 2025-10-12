@@ -1,5 +1,5 @@
 import { Menu } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ContextApp } from "../context/Context-app";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
@@ -9,7 +9,16 @@ function Header() {
     setIsCollapsedMenuOpen,
     setIsCartOpen,
     IsCartOpen,
+    CartList,
   } = useContext(ContextApp);
+
+  const [Length, setLength] = useState(CartList.items.length);
+
+  useEffect(() => {
+    setLength(CartList.items.length);
+    console.log(CartList.items.length); // ou console.log(Length) depois que atualizar
+  }, [CartList.items]);
+
   return (
     <div className="poppins bg-[#2E4F4F] lg:p-6 pt-4 text-2xl text-white">
       <div className="grid lg:grid-cols-3 items-center gap-4">
@@ -28,7 +37,10 @@ function Header() {
             src="/logo.png"
             alt=""
           />
-          <div className="flex lg:hidden justify-end mr-4 w-full">
+          <div className="flex lg:hidden justify-end mr-4 w-full gap-2">
+            <div className={`bg-red-500  rounded-full ${Length > 0 ? "w-[20px] ": "" } flex items-center justify-center `}>
+              <h1>{Length > 0 ? Length:""}</h1>
+            </div>
             <button
               onClick={() => setIsCartOpen(!IsCartOpen)}
               className="bg-[#F5F5DC] text-green-900 p-2 rounded-md hover:bg-amber-300 text-[14px] "
@@ -53,7 +65,10 @@ function Header() {
             </button>
           </div>
         </div>
-        <div className="  flex lg:justify-end justify-center items-center gap-4 ">
+        <div className="  flex lg:justify-end justify-center items-center gap-2 ">
+          <div className="bg-red-500  rounded-full w-[32px] lg:flex justify-center  hidden">
+            <h1>{Length > 0 ? Length:""}</h1>
+          </div>
           <button
             onClick={() => setIsCartOpen(!IsCartOpen)}
             className="bg-[#F5F5DC] text-green-900 p-2 rounded-md hover:bg-amber-300 lg:block hidden"

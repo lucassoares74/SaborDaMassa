@@ -8,6 +8,7 @@ export const ContextProvider = ({ children }) => {
   const [FullList, setFullList] = useState({
     produtos: [
       {
+        value: 10,
         id: 1,
         title: "Feijoada",
         img: "https://picsum.photos/seed/feijoada/300/200",
@@ -16,6 +17,7 @@ export const ContextProvider = ({ children }) => {
         category: "Massas",
       },
       {
+        value: 10,
         id: 2,
         title: "Acarajé",
         img: "https://picsum.photos/seed/acaraje/300/200",
@@ -24,6 +26,7 @@ export const ContextProvider = ({ children }) => {
         category: "Bebidas Quentes",
       },
       {
+        value: 10,
         id: 3,
         title: "Pão de Queijo",
         img: "https://picsum.photos/seed/paodequeijo/300/200",
@@ -32,6 +35,7 @@ export const ContextProvider = ({ children }) => {
         category: "Doces",
       },
       {
+        value: 10,
         id: 4,
         title: "Churrasco",
         img: "https://picsum.photos/seed/churrasco/300/200",
@@ -40,6 +44,7 @@ export const ContextProvider = ({ children }) => {
         category: "Sanduiches",
       },
       {
+        value: 10,
         id: 5,
         title: "Moqueca de Peixe",
         img: "https://picsum.photos/seed/moqueca/300/200",
@@ -48,6 +53,7 @@ export const ContextProvider = ({ children }) => {
         category: "Bebidas frias",
       },
       {
+        value: 10,
         id: 6,
         title: "Brigadeiro",
         img: "https://picsum.photos/seed/brigadeiro/300/200",
@@ -56,6 +62,7 @@ export const ContextProvider = ({ children }) => {
         category: "Doces",
       },
       {
+        value: 10,
         id: 7,
         title: "Coxinha",
         img: "https://picsum.photos/seed/coxinha/300/200",
@@ -64,6 +71,7 @@ export const ContextProvider = ({ children }) => {
         category: "Salgados",
       },
       {
+        value: 10,
         id: 8,
         title: "Tapioca",
         img: "https://picsum.photos/seed/tapioca/300/200",
@@ -72,6 +80,7 @@ export const ContextProvider = ({ children }) => {
         category: "Massas",
       },
       {
+        value: 10,
         id: 9,
         title: "Pastel de Feira",
         img: "https://picsum.photos/seed/pastel/300/200",
@@ -80,6 +89,7 @@ export const ContextProvider = ({ children }) => {
         category: "Salgados",
       },
       {
+        value: 10,
         id: 10,
         title: "Café com Leite",
         img: "https://picsum.photos/seed/cafecomleite/300/200",
@@ -88,6 +98,7 @@ export const ContextProvider = ({ children }) => {
         category: "Bebidas Quentes",
       },
       {
+        value: 10,
         id: 11,
         title: "Milkshake de Chocolate",
         img: "https://picsum.photos/seed/milkshake/300/200",
@@ -96,6 +107,7 @@ export const ContextProvider = ({ children }) => {
         category: "Bebidas Frias",
       },
       {
+        value: 10,
         id: 12,
         title: "Bolo de Cenoura",
         img: "https://picsum.photos/seed/bolocenoura/300/200",
@@ -104,6 +116,7 @@ export const ContextProvider = ({ children }) => {
         category: "Doces",
       },
       {
+        value: 10,
         id: 13,
         title: "Empada de Frango",
         img: "https://picsum.photos/seed/empada/300/200",
@@ -112,6 +125,7 @@ export const ContextProvider = ({ children }) => {
         category: "Salgados",
       },
       {
+        value: 10,
         id: 14,
         title: "Lasanha",
         img: "https://picsum.photos/seed/lasanha/300/200",
@@ -120,6 +134,7 @@ export const ContextProvider = ({ children }) => {
         category: "Massas",
       },
       {
+        value: 10,
         id: 15,
         title: "Suco de Maracujá",
         img: "https://picsum.photos/seed/suco/300/200",
@@ -128,6 +143,7 @@ export const ContextProvider = ({ children }) => {
         category: "Bebidas Frias",
       },
       {
+        value: 10,
         id: 16,
         title: "Croissant",
         img: "https://picsum.photos/seed/croissant/300/200",
@@ -136,6 +152,7 @@ export const ContextProvider = ({ children }) => {
         category: "Sanduiches",
       },
       {
+        value: 10,
         id: 17,
         title: "Pudim de Leite",
         img: "https://picsum.photos/seed/pudim/300/200",
@@ -144,6 +161,7 @@ export const ContextProvider = ({ children }) => {
         category: "Doces",
       },
       {
+        value: 10,
         id: 18,
         title: "Macarrão ao Alho e Óleo",
         img: "https://picsum.photos/seed/macarrao/300/200",
@@ -152,6 +170,7 @@ export const ContextProvider = ({ children }) => {
         category: "Massas",
       },
       {
+        value: 10,
         id: 19,
         title: "Chocolate Quente",
         img: "https://picsum.photos/seed/chocolatequente/300/200",
@@ -160,6 +179,7 @@ export const ContextProvider = ({ children }) => {
         category: "Bebidas Quentes",
       },
       {
+        value: 10,
         id: 20,
         title: "Hambúrguer Artesanal",
         img: "https://picsum.photos/seed/hamburguer/300/200",
@@ -196,7 +216,24 @@ export const ContextProvider = ({ children }) => {
   const endIndex = startIndex + itemsPerPage;
   const itensPaginados = FinalList.slice(startIndex, endIndex);
   const [width, setWidth] = useState(window.innerWidth);
-  const [IsCartOpen, setIsCartOpen] = useState(true);
+  const [IsCartOpen, setIsCartOpen] = useState(false);
+  const [TotalValue, setTotalValue] = useState(0);
+  const [CartList, setCartList] = useState({
+    items: [],
+  });
+
+  useEffect(() => {
+    let newValue = 0;
+    CartList.items.map((a) => {
+      newValue = newValue + a.value;
+    });
+    setTotalValue(newValue);
+  }, [CartList.items]);
+
+  useEffect(() => {
+    console.log("Valor total atualizado:", TotalValue);
+  }, [TotalValue]);
+
   useEffect(() => {
     setFinalList(FullList.produtos);
     setPaginaAtual(1);
@@ -261,6 +298,9 @@ export const ContextProvider = ({ children }) => {
         FilterSingle,
         IsCartOpen,
         setIsCartOpen,
+        CartList,
+        setCartList,
+        TotalValue,
       }}
     >
       {children}
