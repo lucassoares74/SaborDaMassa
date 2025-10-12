@@ -20,13 +20,14 @@ function Header() {
   }, [CartList.items]);
 
   return (
-    <div  className="poppins bg-[#2E4F4F] lg:p-6 pt-4 text-2xl text-white">
+    <div className="poppins bg-[#2E4F4F] lg:p-6 pt-4 text-2xl text-white">
       <div className="grid lg:grid-cols-3 items-center gap-4">
         <div className="lg:block flex lg:justify-center items-center gap-6">
           <div className="lg:hidden ml-6">
             <button
               onClick={() => {
                 setIsCollapsedMenuOpen(!IsCollapsedMenuOpen);
+                setIsCartOpen(false)
               }}
             >
               <Menu></Menu>
@@ -38,11 +39,17 @@ function Header() {
             alt=""
           />
           <div className="flex lg:hidden justify-end mr-4 w-full gap-2">
-            <div className={`bg-red-500  rounded-full ${Length > 0 ? "w-[20px] ": "" } flex items-center justify-center `}>
-              <h1>{Length > 0 ? Length:""}</h1>
+            <div
+              className={`bg-red-500  rounded-full ${
+                Length > 0 ? "w-[20px] " : ""
+              } flex items-center justify-center `}
+            >
+              <h1>{Length > 0 ? Length : ""}</h1>
             </div>
             <button
-              onClick={() => setIsCartOpen(!IsCartOpen)}
+              onClick={() =>
+                IsCollapsedMenuOpen ? "" : setIsCartOpen(!IsCartOpen)
+              }
               className="bg-[#F5F5DC] text-green-900 p-2 rounded-md hover:bg-amber-300 text-[14px] "
             >
               <ShoppingCart></ShoppingCart>
@@ -67,7 +74,7 @@ function Header() {
         </div>
         <div className="  flex lg:justify-end justify-center items-center gap-2 ">
           <div className="bg-red-500  rounded-full w-[32px] lg:flex justify-center  hidden">
-            <h1>{Length > 0 ? Length:""}</h1>
+            <h1>{Length > 0 ? Length : ""}</h1>
           </div>
           <button
             onClick={() => setIsCartOpen(!IsCartOpen)}

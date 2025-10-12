@@ -1,10 +1,27 @@
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { ContextApp } from "../context/Context-app";
 import { Trash2 } from "lucide-react";
 
 function Cart() {
-  const { IsCartOpen, CartList, setCartList, TotalValue } =
+  const divRef = useRef(null);
+  const { IsCartOpen, CartList, setCartList, TotalValue, setIsCartOpen } =
     useContext(ContextApp);
+
+  useEffect(() => {
+    function handleClickFora(event) {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setIsCartOpen(false);
+      }
+    }
+
+    if (IsCartOpen) {
+      document.addEventListener("mousedown", handleClickFora);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickFora);
+    };
+  }, [IsCartOpen]);
 
   function Decrease(b) {
     setCartList((prev) => ({
@@ -24,6 +41,7 @@ function Cart() {
   }
   return (
     <div
+      ref={divRef}
       className={`bg-[#F5F5DC] rounded-md p-4 sm:w-[40%] lg:w-[20%] h-screen-min absolute sm:top-20 top-20.5 right-0 z-50 transform ${
         IsCartOpen ? "" : "hidden"
       }`}
