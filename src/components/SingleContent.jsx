@@ -38,6 +38,7 @@ function SingleContent() {
                 {FinalSingleList[0].title}
               </h1>
               <p className="text-justify">{FinalSingleList[0].description}</p>
+              <p>Serve até: {FinalSingleList[0].serve} pessoas</p>
             </div>
             <img
               className="sm:h-[300px] h-[300px] w-[350px] sm:w-[500px]"

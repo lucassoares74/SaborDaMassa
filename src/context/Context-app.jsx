@@ -15,6 +15,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Prato icônico com feijão preto e diversas carnes de porco e boi. Geralmente servido com arroz, couve e laranja.",
         category: "Massas",
+        serve: 2
       },
       {
         value: 10,
@@ -24,6 +25,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Bolinho de feijão-fradinho frito no azeite de dendê, recheado com vatapá, camarão e salada. Típico da Bahia.",
         category: "Bebidas Quentes",
+        serve: 2
       },
       {
         value: 10,
@@ -33,6 +35,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Pequeno pão feito com polvilho (mandioca) e queijo. Crocante por fora e macio por dentro, popular em Minas Gerais.",
         category: "Doces",
+        serve: 2
       },
       {
         value: 10,
@@ -42,6 +45,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Carne bovina, suína ou de frango assada na brasa, temperada com sal grosso. Um clássico gaúcho.",
         category: "Sanduiches",
+        serve: 2
       },
       {
         value: 10,
@@ -51,6 +55,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Ensopado de peixe com leite de coco, azeite de dendê (opcional) e vegetais. Pode ser baiana ou capixaba.",
         category: "Bebidas frias",
+        serve: 2
       },
       {
         value: 10,
@@ -60,6 +65,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Doce cremoso e redondo feito com leite condensado, chocolate em pó e manteiga, coberto com granulado.",
         category: "Doces",
+        serve: 2
       },
       {
         value: 10,
@@ -69,6 +75,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Salgado com massa à base de batata e recheio de frango desfiado, moldado em formato de 'coxa' e frito.",
         category: "Salgados",
+        serve: 2
       },
       {
         value: 10,
@@ -78,6 +85,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Panqueca feita com goma de mandioca (tapioca), pode ter recheios doces ou salgados. Muito consumida no Nordeste.",
         category: "Massas",
+        serve: 2
       },
       {
         value: 10,
@@ -87,6 +95,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Massa fina e crocante recheada com carne, queijo ou outros ingredientes, frita em óleo quente.",
         category: "Salgados",
+        serve: 2
       },
       {
         value: 10,
@@ -96,6 +105,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Mistura clássica de café preto com leite quente, muito consumida no café da manhã.",
         category: "Bebidas Quentes",
+        serve: 2
       },
       {
         value: 10,
@@ -105,6 +115,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Bebida gelada e cremosa feita com sorvete de chocolate, leite e cobertura.",
         category: "Bebidas Frias",
+        serve: 2
       },
       {
         value: 10,
@@ -114,6 +125,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Bolo macio feito com cenoura, coberto com calda de chocolate.",
         category: "Doces",
+        serve: 2
       },
       {
         value: 10,
@@ -123,6 +135,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Massa amanteigada recheada com frango cremoso, servida em porções individuais.",
         category: "Salgados",
+        serve: 2
       },
       {
         value: 10,
@@ -132,6 +145,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Camadas de massa intercaladas com molho de carne, queijo e molho branco.",
         category: "Massas",
+        serve: 2
       },
       {
         value: 10,
@@ -141,6 +155,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Bebida refrescante feita com polpa de maracujá, água e açúcar.",
         category: "Bebidas Frias",
+        serve: 2
       },
       {
         value: 10,
@@ -150,6 +165,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Pão folhado francês, leve e amanteigado, pode ser recheado com queijo ou chocolate.",
         category: "Sanduiches",
+        serve: 2
       },
       {
         value: 10,
@@ -159,6 +175,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Sobremesa cremosa feita com leite condensado, ovos e calda de açúcar.",
         category: "Doces",
+        serve: 2
       },
       {
         value: 10,
@@ -168,6 +185,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Prato simples e saboroso com espaguete, alho dourado e azeite.",
         category: "Massas",
+        serve: 2
       },
       {
         value: 10,
@@ -177,6 +195,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Bebida quente e cremosa feita com leite e chocolate em pó ou derretido.",
         category: "Bebidas Quentes",
+        serve: 2
       },
       {
         value: 10,
@@ -186,6 +205,7 @@ export const ContextProvider = ({ children }) => {
         description:
           "Sanduíche com carne grelhada, queijo, salada e molhos especiais no pão macio.",
         category: "Sanduiches",
+        serve: 2
       },
     ],
     ChefInfo: {
@@ -204,6 +224,7 @@ export const ContextProvider = ({ children }) => {
       "Bebidas Quentes",
       "Bebidas frias",
     ],
+    contatoimg:"https://placehold.co/400",
   });
   const [FinalList, setFinalList] = useState(FullList.produtos);
   const [isMenuCardapioOpen, setisMenuCardapioOpen] = useState(false);

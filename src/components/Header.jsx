@@ -65,11 +65,9 @@ function Header() {
               <Link to="/Cardapio">Cardapio</Link>
             </button>
             <button className="hover:text-amber-300">
-              <Link to="/">Contato</Link>
+              <Link to="/Contato">Contato</Link>
             </button>
-            <button className="hover:text-amber-300">
-              <Link to="/">Sobre</Link>
-            </button>
+           
           </div>
         </div>
         <div className="  flex lg:justify-end justify-center items-center gap-2 ">

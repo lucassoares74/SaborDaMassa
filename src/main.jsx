@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ContextProvider } from "./context/Context-app.jsx";
-import Cardapio from './pages/Cardapio';
-import Single from './pages/Single';
-
+import Cardapio from "./pages/Cardapio";
+import Single from "./pages/Single";
+import Contato from "./pages/Contato";
 
 const router = createBrowserRouter([
   {
@@ -25,14 +25,22 @@ const router = createBrowserRouter([
       </ContextProvider>
     ),
   },
-   {
+  {
     path: "/Single",
     element: (
       <ContextProvider>
         <Single />
       </ContextProvider>
     ),
-  }
+  },
+  {
+    path: "/Contato",
+    element: (
+      <ContextProvider>
+        <Contato />
+      </ContextProvider>
+    ),
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

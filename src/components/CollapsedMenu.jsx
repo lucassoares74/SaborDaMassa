@@ -31,13 +31,7 @@ function CollapsedMenu() {
             onClick={() => setIsCollapsedMenuOpen(false)}
             className="hover:text-amber-300"
           >
-            <Link to="/">Contato</Link>
-          </button>
-          <button
-            onClick={() => setIsCollapsedMenuOpen(false)}
-            className="hover:text-amber-300"
-          >
-            <Link to="/">Sobre</Link>
+            <Link to="/Contato">Contato</Link>
           </button>
         </div>
       </div>
