@@ -24,7 +24,7 @@ function Cart() {
   }
   return (
     <div
-      className={`bg-[#F5F5DC] rounded-md p-4  sm:w-[20%] h-screen-min absolute sm:top-20 top-20.5 right-0 z-50 transform ${
+      className={`bg-[#F5F5DC] rounded-md p-4 sm:w-[40%] lg:w-[20%] h-screen-min absolute sm:top-20 top-20.5 right-0 z-50 transform ${
         IsCartOpen ? "" : "hidden"
       }`}
     >
@@ -79,14 +79,26 @@ function Cart() {
                     <Trash2></Trash2>
                   </button>
                 </div>
-                <h1>{a.value}</h1>
+                <h1 className="text-[15px]">
+                  {a.value.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </h1>
               </div>
             </div>
           );
         })}
 
         <div className="flex justify-center">
-          <h1>Valor Total:{" " + TotalValue}</h1>
+          <h1>
+            Valor Total:
+            {" " +
+              TotalValue.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+          </h1>
         </div>
 
         <div className="flex justify-center ">

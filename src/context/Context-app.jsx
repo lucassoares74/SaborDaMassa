@@ -8,7 +8,7 @@ export const ContextProvider = ({ children }) => {
   const [FullList, setFullList] = useState({
     produtos: [
       {
-        value: 10,
+        value: 10.50,
         id: 1,
         title: "Feijoada",
         img: "https://picsum.photos/seed/feijoada/300/200",
@@ -237,6 +237,7 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     setFinalList(FullList.produtos);
     setPaginaAtual(1);
+    setIsCartOpen(false)
   }, [location.pathname]);
 
   useEffect(() => {

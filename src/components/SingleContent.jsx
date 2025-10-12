@@ -47,11 +47,15 @@ function SingleContent() {
           </div>
           <div className="flex flex-col items-center gap-6">
             <h1 className="poppins text-gray-700">
-              {FinalSingleList[0].value}R$
+              {FinalSingleList[0].value.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+              
             </h1>
             <button
               onClick={() => {
-                setIsCartOpen(true)
+                setIsCartOpen(true);
                 const newItem = {
                   id: FinalSingleList[0].id,
                   qnt: 1,

@@ -20,7 +20,7 @@ function Header() {
   }, [CartList.items]);
 
   return (
-    <div className="poppins bg-[#2E4F4F] lg:p-6 pt-4 text-2xl text-white">
+    <div  className="poppins bg-[#2E4F4F] lg:p-6 pt-4 text-2xl text-white">
       <div className="grid lg:grid-cols-3 items-center gap-4">
         <div className="lg:block flex lg:justify-center items-center gap-6">
           <div className="lg:hidden ml-6">
