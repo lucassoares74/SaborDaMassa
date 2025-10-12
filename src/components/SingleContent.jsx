@@ -22,22 +22,22 @@ function SingleContent() {
 
   if (Array.isArray(FinalSingleList)) {
     return (
-      <div>
-        <div className=" bg-[#F5F5DC] flex flex-col p-6 gap-6 items-center">
+      <div className="flex bg-[#FAFAE0]  justify-center">
+        <div className=" bg-[#F5F5DC]  flex flex-col p-6 gap-6 items-center sm:w-[90%] lg:w-[70%] shadow-2xl">
           <div className="Flex">
             <button
               onClick={() => navigate(-1)}
-              className="text-[#2E4F4F] ml-6"
+              className="text-[#2E4F4F] ml-6 hover:bg-amber-300 rounded-md "
             >
               <ArrowLeft></ArrowLeft>
             </button>
           </div>
-          <div className="flex justify-center flex-col sm:flex-row gap-6">
-            <div className="w-[300px] flex flex-col gap-6 items-center">
+          <div className="flex justify-center flex-col sm:flex-row gap-6 ">
+            <div className="sm:w-[300px] flex flex-col gap-6 items-center ">
               <h1 className="text-4xl poppins text-[#2E4F4F]">
                 {FinalSingleList[0].title}
               </h1>
-              <p className="text-justify">{FinalSingleList[0].description}</p>
+              <p className="sm:text-justify  lg:tracking-normal tracking-tight">{FinalSingleList[0].description}</p>
               <p>Serve até: {FinalSingleList[0].serve} pessoas</p>
             </div>
             <img
@@ -46,8 +46,8 @@ function SingleContent() {
               alt=""
             />
           </div>
-          <div className="flex flex-col items-center gap-6">
-            <h1 className="poppins text-gray-700">
+          <div className="flex items-center gap-6 ">
+            <h1 className="poppins text-gray-700 font-extrabold text-2xl">
               {FinalSingleList[0].value.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL",
@@ -93,7 +93,7 @@ function SingleContent() {
                   }));
                 }
               }}
-              className="bg-[#2E4F4F] rounded-md p-2 text-white poppins"
+              className="bg-[#2E4F4F] rounded-md p-2 text-white poppins hover:bg-amber-300"
             >
               Adicionar ao carrinho
             </button>

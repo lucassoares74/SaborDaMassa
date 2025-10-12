@@ -38,7 +38,7 @@ function Contato() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <button className="bg-[#2E4F4F] p-2 rounded-md">
+                <button className="bg-[#2E4F4F] p-2 rounded-md hover:bg-amber-300">
                   Mandar Mensagem
                 </button>
               </div>
