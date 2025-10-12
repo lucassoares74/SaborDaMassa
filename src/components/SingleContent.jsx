@@ -37,7 +37,9 @@ function SingleContent() {
               <h1 className="text-4xl poppins text-[#2E4F4F]">
                 {FinalSingleList[0].title}
               </h1>
-              <p className="sm:text-justify  lg:tracking-normal tracking-tight">{FinalSingleList[0].description}</p>
+              <p className="sm:text-justify  lg:tracking-normal tracking-tight">
+                {FinalSingleList[0].description}
+              </p>
               <p>Serve até: {FinalSingleList[0].serve} pessoas</p>
             </div>
             <img
@@ -98,7 +100,7 @@ function SingleContent() {
               Adicionar ao carrinho
             </button>
           </div>
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-4 text-[#2E4F4F]">
             <h1 className="poppins text-2xl">Mais Imagens</h1>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <img src="https://placehold.co/200" alt="" />

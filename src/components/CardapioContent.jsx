@@ -112,7 +112,7 @@ function CardapioContent() {
               );
             })}
           </div>
-          <div className="flex flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-8 text-[#2E4F4F]">
             <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-y-12 gap-6">
               {itensPaginados.map((elements) => {
                 return (

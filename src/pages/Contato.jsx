@@ -8,16 +8,20 @@ import { ContextApp } from "../context/Context-app";
 function Contato() {
   const { FullList } = useContext(ContextApp);
   return (
-    <div >
+    <div>
       <Cart />
       <CollapsedMenu />
       <Header></Header>
-      <div className="bg-[#F5F5DC] p-6 flex  sm:justify-center overflow-x-hidden min-h-screen">
+      <div className="bg-[#F5F5DC] text-[#2E4F4F] p-6 flex  sm:justify-center overflow-x-hidden min-h-screen">
         <div className=" flex flex-col items-center p-2 sm:w-[70%]">
           <h1 className="text-3xl poppins">Fale conosco</h1>
           <p className="poppins">Estamos aqui para te atender</p>
           <div className="flex lg:flex-row flex-col">
-            <img className="w-[300px] sm:w-[400px]" src={FullList.contatoimg} alt="" />
+            <img
+              className="w-[300px] sm:w-[400px]"
+              src={FullList.contatoimg}
+              alt=""
+            />
             <div>
               <div className="grid grid-cols-[100px_1fr] sm:grid-cols-[138px_1fr] poppins  p-2 h-[235px] w-full">
                 <div className="flex font-extrabold flex-col">
@@ -38,7 +42,7 @@ function Contato() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <button className="bg-[#2E4F4F] p-2 rounded-md hover:bg-amber-300">
+                <button className="bg-[#2E4F4F] p-2 rounded-md hover:bg-amber-300 text-white">
                   Mandar Mensagem
                 </button>
               </div>
@@ -46,7 +50,7 @@ function Contato() {
           </div>
         </div>
       </div>
-      
+
       <Footer></Footer>
     </div>
   );

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Featured() {
-  const { FullList} = useContext(ContextApp);
+  const { FullList } = useContext(ContextApp);
   const navigate = useNavigate();
 
   return (
@@ -16,10 +16,11 @@ function Featured() {
           </h1>
         </div>
         <div className="flex justify-center text-[#2E4F4F]">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10  ">
-            {FullList.produtos.slice(0,4).map((a) => {
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 ">
+            {FullList.produtos.slice(0, 4).map((a) => {
               return (
-                <div key={a.id}
+                <div
+                  key={a.id}
                   onClick={() => {
                     navigate("/Single?id=" + a.id);
                     console.log(a.id);
@@ -42,7 +43,7 @@ function Featured() {
           </div>
         </div>
         <div className="flex justify-center">
-          <button className="poppins rounded-md font-bold bg-[#F5F5DC] p-2 hover:bg-amber-300 mt-5">
+          <button className="text-[#2E4F4F] poppins rounded-md font-bold bg-[#F5F5DC] p-2 hover:bg-amber-300 mt-5">
             <Link to="/Cardapio">Ver Cardapio Completo</Link>
           </button>
         </div>
