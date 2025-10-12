@@ -51,7 +51,6 @@ function SingleContent() {
                 style: "currency",
                 currency: "BRL",
               })}
-              
             </h1>
             <button
               onClick={() => {
@@ -100,7 +99,7 @@ function SingleContent() {
           </div>
           <div className="flex flex-col items-center gap-4">
             <h1 className="poppins text-2xl">Mais Imagens</h1>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <img src="https://placehold.co/200" alt="" />
               <img src="https://placehold.co/200" alt="" />
               <img src="https://placehold.co/200" alt="" />
