@@ -1,10 +1,11 @@
 import { ArrowDownNarrowWide, Target } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { ContextApp } from "../context/Context-app";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 function CardapioContent() {
   const navigate = useNavigate();
+  const divRef = useRef(null);
   const {
     isMenuCardapioOpen,
     setisMenuCardapioOpen,
@@ -21,6 +22,22 @@ function CardapioContent() {
     FinalSingleList,
     FullList,
   } = useContext(ContextApp);
+
+  useEffect(() => {
+    function handleClickFora(event) {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setisMenuCardapioOpen(false);
+      }
+    }
+
+    if (isMenuCardapioOpen) {
+      document.addEventListener("mousedown", handleClickFora);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickFora);
+    };
+  }, [isMenuCardapioOpen]);
 
   return (
     <div>
@@ -39,6 +56,7 @@ function CardapioContent() {
               Categorias<ArrowDownNarrowWide></ArrowDownNarrowWide>
             </button>
             <div
+              ref={divRef}
               className={`lg:hidden transition-all duration-300 ease-out overflow-hidden ${
                 isMenuCardapioOpen
                   ? "max-h-[500px] opacity-100"
