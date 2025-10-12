@@ -18,7 +18,7 @@ function Contato() {
           <p className="poppins">Estamos aqui para te atender</p>
           <div className="flex lg:flex-row flex-col">
             <img
-              className="w-[300px] sm:w-[400px]"
+              className="w-[400px] sm:w-[400px]"
               src={FullList.contatoimg}
               alt=""
             />
