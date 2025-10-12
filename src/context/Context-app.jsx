@@ -1,232 +1,28 @@
 import { createContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 export const ContextApp = createContext();
 
 export const ContextProvider = ({ children }) => {
+  const [AllLoaded, setAllLoaded] = useState(false);
   const location = useLocation();
-  const [FullList, setFullList] = useState({
-    produtos: [
-      {
-        value: 10.50,
-        id: 1,
-        title: "Feijoada",
-        img: "https://picsum.photos/seed/feijoada/300/200",
-        description:
-          "Prato icônico com feijão preto e diversas carnes de porco e boi. Geralmente servido com arroz, couve e laranja.",
-        category: "Massas",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 2,
-        title: "Acarajé",
-        img: "https://picsum.photos/seed/acaraje/300/200",
-        description:
-          "Bolinho de feijão-fradinho frito no azeite de dendê, recheado com vatapá, camarão e salada. Típico da Bahia.",
-        category: "Bebidas Quentes",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 3,
-        title: "Pão de Queijo",
-        img: "https://picsum.photos/seed/paodequeijo/300/200",
-        description:
-          "Pequeno pão feito com polvilho (mandioca) e queijo. Crocante por fora e macio por dentro, popular em Minas Gerais.",
-        category: "Doces",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 4,
-        title: "Churrasco",
-        img: "https://picsum.photos/seed/churrasco/300/200",
-        description:
-          "Carne bovina, suína ou de frango assada na brasa, temperada com sal grosso. Um clássico gaúcho.",
-        category: "Sanduiches",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 5,
-        title: "Moqueca de Peixe",
-        img: "https://picsum.photos/seed/moqueca/300/200",
-        description:
-          "Ensopado de peixe com leite de coco, azeite de dendê (opcional) e vegetais. Pode ser baiana ou capixaba.",
-        category: "Bebidas frias",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 6,
-        title: "Brigadeiro",
-        img: "https://picsum.photos/seed/brigadeiro/300/200",
-        description:
-          "Doce cremoso e redondo feito com leite condensado, chocolate em pó e manteiga, coberto com granulado.",
-        category: "Doces",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 7,
-        title: "Coxinha",
-        img: "https://picsum.photos/seed/coxinha/300/200",
-        description:
-          "Salgado com massa à base de batata e recheio de frango desfiado, moldado em formato de 'coxa' e frito.",
-        category: "Salgados",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 8,
-        title: "Tapioca",
-        img: "https://picsum.photos/seed/tapioca/300/200",
-        description:
-          "Panqueca feita com goma de mandioca (tapioca), pode ter recheios doces ou salgados. Muito consumida no Nordeste.",
-        category: "Massas",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 9,
-        title: "Pastel de Feira",
-        img: "https://picsum.photos/seed/pastel/300/200",
-        description:
-          "Massa fina e crocante recheada com carne, queijo ou outros ingredientes, frita em óleo quente.",
-        category: "Salgados",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 10,
-        title: "Café com Leite",
-        img: "https://picsum.photos/seed/cafecomleite/300/200",
-        description:
-          "Mistura clássica de café preto com leite quente, muito consumida no café da manhã.",
-        category: "Bebidas Quentes",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 11,
-        title: "Milkshake de Chocolate",
-        img: "https://picsum.photos/seed/milkshake/300/200",
-        description:
-          "Bebida gelada e cremosa feita com sorvete de chocolate, leite e cobertura.",
-        category: "Bebidas Frias",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 12,
-        title: "Bolo de Cenoura",
-        img: "https://picsum.photos/seed/bolocenoura/300/200",
-        description:
-          "Bolo macio feito com cenoura, coberto com calda de chocolate.",
-        category: "Doces",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 13,
-        title: "Empada de Frango",
-        img: "https://picsum.photos/seed/empada/300/200",
-        description:
-          "Massa amanteigada recheada com frango cremoso, servida em porções individuais.",
-        category: "Salgados",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 14,
-        title: "Lasanha",
-        img: "https://picsum.photos/seed/lasanha/300/200",
-        description:
-          "Camadas de massa intercaladas com molho de carne, queijo e molho branco.",
-        category: "Massas",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 15,
-        title: "Suco de Maracujá",
-        img: "https://picsum.photos/seed/suco/300/200",
-        description:
-          "Bebida refrescante feita com polpa de maracujá, água e açúcar.",
-        category: "Bebidas Frias",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 16,
-        title: "Croissant",
-        img: "https://picsum.photos/seed/croissant/300/200",
-        description:
-          "Pão folhado francês, leve e amanteigado, pode ser recheado com queijo ou chocolate.",
-        category: "Sanduiches",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 17,
-        title: "Pudim de Leite",
-        img: "https://picsum.photos/seed/pudim/300/200",
-        description:
-          "Sobremesa cremosa feita com leite condensado, ovos e calda de açúcar.",
-        category: "Doces",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 18,
-        title: "Macarrão ao Alho e Óleo",
-        img: "https://picsum.photos/seed/macarrao/300/200",
-        description:
-          "Prato simples e saboroso com espaguete, alho dourado e azeite.",
-        category: "Massas",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 19,
-        title: "Chocolate Quente",
-        img: "https://picsum.photos/seed/chocolatequente/300/200",
-        description:
-          "Bebida quente e cremosa feita com leite e chocolate em pó ou derretido.",
-        category: "Bebidas Quentes",
-        serve: 2
-      },
-      {
-        value: 10,
-        id: 20,
-        title: "Hambúrguer Artesanal",
-        img: "https://picsum.photos/seed/hamburguer/300/200",
-        description:
-          "Sanduíche com carne grelhada, queijo, salada e molhos especiais no pão macio.",
-        category: "Sanduiches",
-        serve: 2
-      },
-    ],
-    ChefInfo: {
-      img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRCWbJ4HzAtNq650CpHcfLtG0oNdiLccLkgeJAEUGIAIibiRVI9PSdFttZu21umWAoAH3TzPJAybcd7voH0GpWKyaFQEA0MnbYp1wuinW0",
-      name: "Eric Jaquin",
-    },
-    banner:
-      "https://cdn.pixabay.com/video/2024/02/26/202004-916894674_tiny.jpg",
-    breveimg:
-      "https://revistaespresso.com.br/wordpress/wp-content/uploads/2020/10/image008-1024x701.jpg",
-    categorias: [
-      "Massas",
-      "Sanduiches",
-      "Salgados",
-      "Doces",
-      "Bebidas Quentes",
-      "Bebidas frias",
-    ],
-    contatoimg:"https://placehold.co/400",
-  });
-  const [FinalList, setFinalList] = useState(FullList.produtos);
+  const [FullList, setFullList] = useState();
+
+  useEffect(() => {
+    axios
+      .get("https://68ec2acfeff9ad3b14016f84.mockapi.io/full/all")
+      .then((response) => {
+        console.log(response.data[0]);
+        setFullList(response.data[0]);
+        setAllLoaded(true);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar dados:", error);
+      });
+  }, []);
+
+  const [FinalList, setFinalList] = useState([]);
   const [isMenuCardapioOpen, setisMenuCardapioOpen] = useState(false);
   const [IsCollapsedMenuOpen, setIsCollapsedMenuOpen] = useState(false);
   const [FinalSingleList, setFinalSingleList] = useState();
@@ -244,6 +40,12 @@ export const ContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
+    if (FullList) {
+      setFinalList(FullList.produtos);
+    }
+  }, [FullList]);
+
+  useEffect(() => {
     let newValue = 0;
     CartList.items.map((a) => {
       newValue = newValue + a.value;
@@ -256,9 +58,10 @@ export const ContextProvider = ({ children }) => {
   }, [TotalValue]);
 
   useEffect(() => {
+    if(!FullList){return}
     setFinalList(FullList.produtos);
     setPaginaAtual(1);
-    setIsCartOpen(false)
+    setIsCartOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -299,33 +102,36 @@ export const ContextProvider = ({ children }) => {
     const filtred = FullList.produtos.filter((a) => a.id === b);
     setFinalSingleList(filtred);
   }
-
-  return (
-    <ContextApp.Provider
-      value={{
-        IsCollapsedMenuOpen,
-        setIsCollapsedMenuOpen,
-        isMenuCardapioOpen,
-        setisMenuCardapioOpen,
-        FinalList,
-        setFinalList,
-        FilterListByCategory,
-        filterListByName,
-        itensPaginados,
-        paginaAtual,
-        setPaginaAtual,
-        totalPages,
-        FullList,
-        FinalSingleList,
-        FilterSingle,
-        IsCartOpen,
-        setIsCartOpen,
-        CartList,
-        setCartList,
-        TotalValue,
-      }}
-    >
-      {children}
-    </ContextApp.Provider>
-  );
+  if (AllLoaded) {
+    return (
+      <ContextApp.Provider
+        value={{
+          IsCollapsedMenuOpen,
+          setIsCollapsedMenuOpen,
+          isMenuCardapioOpen,
+          setisMenuCardapioOpen,
+          FinalList,
+          setFinalList,
+          FilterListByCategory,
+          filterListByName,
+          itensPaginados,
+          paginaAtual,
+          setPaginaAtual,
+          totalPages,
+          FullList,
+          FinalSingleList,
+          FilterSingle,
+          IsCartOpen,
+          setIsCartOpen,
+          CartList,
+          setCartList,
+          TotalValue,
+        }}
+      >
+        {children}
+      </ContextApp.Provider>
+    );
+  } else {
+    return <div>Carregando</div>;
+  }
 };
