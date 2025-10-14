@@ -1,11 +1,52 @@
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef, useEffect, useState, use } from "react";
 import { ContextApp } from "../context/Context-app";
 import { Trash2 } from "lucide-react";
 
 function Cart() {
+  const dataFormatada = new Date().toLocaleString();
   const divRef = useRef(null);
+
   const { IsCartOpen, CartList, setCartList, TotalValue, setIsCartOpen } =
     useContext(ContextApp);
+  let sendText = `Seu pedido sabor da massa: ${dataFormatada} \n`;
+  const [Payform, setPayform] = useState("");
+  const [troco, settroco] = useState(0);
+  const [logistica, setlogistica] = useState("");
+
+  const [rua, setrua] = useState();
+  const [bairro, setbairro] = useState();
+  const [Numero, setNumero] = useState();
+
+  function Enviar_pedido() {
+    sendText = `Seu pedido sabor da massa: ${dataFormatada} \n`;
+    CartList.items.map((a) => {
+      sendText += `${a.qnt}x ${a.title} ${a.value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      })} ................\n`;
+    });
+    sendText =
+      sendText +
+      `Forma de pagamento: ${Payform}\n` +
+      `Total: ${TotalValue.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      })} \n` +
+      `troco:${
+        troco - TotalValue > 0
+          ? (troco - TotalValue).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })
+          : ""
+      } \n` +
+      `Tipo de entrega: ${
+        logistica === "Retirada"
+          ? "retirada"
+          : rua + " n: " + Numero + " , " + bairro
+      }`;
+    console.log(sendText);
+  }
 
   useEffect(() => {
     function handleClickFora(event) {
@@ -27,7 +68,7 @@ function Cart() {
     setCartList((prev) => ({
       ...prev,
       items: prev.items.map((item) => {
-        if (item.id === b.id && item.qnt > 0) {
+        if (item.id === b.id && item.qnt > 1) {
           const novaQnt = item.qnt - 1;
           return {
             ...item,
@@ -42,7 +83,7 @@ function Cart() {
   return (
     <div
       ref={divRef}
-      className={`bg-[#F5F5DC] rounded-md p-4 sm:w-[40%] lg:w-[20%] h-screen-min absolute sm:top-20 top-20.5 right-0 z-50 transform ${
+      className={`bg-[#F5F5DC] border-1 rounded-md p-4 sm:w-[40%] lg:w-[20%] h-screen-min absolute sm:top-20 top-20.5  right-0 z-50 transform ${
         IsCartOpen ? "" : "hidden"
       }`}
     >
@@ -118,9 +159,148 @@ function Cart() {
               })}
           </h1>
         </div>
-
+        <div className="flex flex-col items-center border-1 rounded-md">
+          <h1>Forma de Pagamento:</h1>
+          <label>
+            <input
+              type="radio"
+              name="pagamento"
+              value="Cartão"
+              onChange={(e) => {
+                setPayform(e.target.value);
+                settroco(0);
+              }}
+            />
+            Cartão
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="pagamento"
+              value="Dinheiro"
+              onChange={(e) => setPayform(e.target.value)}
+            />
+            Dinheiro
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="pagamento"
+              value="Pix"
+              onChange={(e) => {
+                setPayform(e.target.value);
+                settroco(0);
+              }}
+            />
+            Pix
+          </label>
+        </div>
+        <div
+          className={
+            Payform === "Dinheiro" ? "flex flex-col gap-1 " : "hidden"
+          }
+        > <h1>Troco:</h1>
+          <input
+            onChange={(event) => {
+              settroco(event.target.value);
+            }}
+            className="border-1 "
+            type="text"
+            placeholder="troco pra quanto?"
+          />
+        </div>
+        <div className="flex gap-2 justify-center border-1 rounded-md ">
+          <label>
+            <input
+              onChange={(event) => {
+                setlogistica(event.target.value);
+              }}
+              type="radio"
+              value="Entrega"
+              name="logistica"
+            />
+            Entrega
+          </label>
+          <label>
+            <input
+              onChange={(event) => {
+                setlogistica(event.target.value);
+              }}
+              type="radio"
+              value="Retirada"
+              name="logistica"
+            />
+            Retirada
+          </label>
+        </div>
+        <div
+          className={logistica === "Entrega" ? "flex gap-1 flex-col" : "hidden"}
+        >
+          <h1>Endereço:</h1>
+          <input
+            onChange={(event) => {
+              setbairro(event.target.value);
+            }}
+            className="border-1"
+            type="text"
+            placeholder="Bairro:"
+          />
+          <input
+            onChange={(event) => {
+              setrua(event.target.value);
+            }}
+            className="border-1"
+            type="text"
+            placeholder="rua:"
+          />
+          <input
+            onChange={(event) => {
+              setNumero(event.target.value);
+            }}
+            className="border-1"
+            type="text"
+            placeholder="Numero:"
+          />
+        </div>
         <div className="flex justify-center ">
-          <button className="p-2 bg-[#2E4F4F] rounded-md hover:bg-amber-300 text-white">
+          <button
+            onClick={() => {
+              if (CartList.items.length > 0) {
+                if (logistica !== "") {
+                  if (Payform !== "") {
+                    if (Payform === "Dinheiro") {
+                      if (troco - TotalValue > 0) {
+                        Enviar_pedido();
+                        window.open(
+                          `https://wa.me/5521970231071?text=${encodeURIComponent(
+                            sendText
+                          )}`,
+                          "_blank"
+                        );
+                      } else {
+                        alert("Troco Invalido!");
+                      }
+                    } else {
+                      Enviar_pedido();
+                      window.open(
+                        `https://wa.me/5521970231071?text=${encodeURIComponent(
+                          sendText
+                        )}`,
+                        "_blank"
+                      );
+                    }
+                  } else {
+                    alert("selecione um metodo de pagamento!");
+                  }
+                } else {
+                  alert("Selecione Uma forma de entrega!");
+                }
+              } else {
+                alert("selecione pelo menos um item!");
+              }
+            }}
+            className="p-2 bg-[#2E4F4F] rounded-md hover:bg-amber-300 text-white"
+          >
             Finalizar Compra
           </button>
         </div>
