@@ -22,12 +22,13 @@ function Login() {
           type="text"
         />
         <input
+          type="password"
           onChange={(event) => {
             setpasswordInput(event.target.value);
           }}
           placeholder="Senha"
           className="bg-white p-2 border-2"
-          type="text"
+          
         />
         <button
           onClick={() => {
