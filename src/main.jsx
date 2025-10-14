@@ -7,6 +7,8 @@ import { ContextProvider } from "./context/Context-app.jsx";
 import Cardapio from "./pages/Cardapio";
 import Single from "./pages/Single";
 import Contato from "./pages/Contato";
+import Login from "./pages/Login.jsx";
+import Cript from "./pages/cript";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,24 @@ const router = createBrowserRouter([
     element: (
       <ContextProvider>
         <Contato />
+      </ContextProvider>
+    ),
+  },
+
+  {
+    path: "/Admin",
+    element: (
+      <ContextProvider>
+        <Login />
+      </ContextProvider>
+    ),
+  },
+
+  {
+    path: "/Cript",
+    element: (
+      <ContextProvider>
+        <Cript />
       </ContextProvider>
     ),
   },

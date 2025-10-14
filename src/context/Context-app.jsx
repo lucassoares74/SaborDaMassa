@@ -38,6 +38,7 @@ export const ContextProvider = ({ children }) => {
   const [CartList, setCartList] = useState({
     items: [],
   });
+  const [islogged, setislogged] = useState(true);
 
   useEffect(() => {
     if (FullList) {
@@ -58,7 +59,9 @@ export const ContextProvider = ({ children }) => {
   }, [TotalValue]);
 
   useEffect(() => {
-    if(!FullList){return}
+    if (!FullList) {
+      return;
+    }
     setFinalList(FullList.produtos);
     setPaginaAtual(1);
     setIsCartOpen(false);
@@ -126,6 +129,9 @@ export const ContextProvider = ({ children }) => {
           CartList,
           setCartList,
           TotalValue,
+          islogged,
+          setislogged,
+          setFullList,
         }}
       >
         {children}
