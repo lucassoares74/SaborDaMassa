@@ -20,6 +20,7 @@ function Cript() {
   let addserve = "";
   let addimg = "";
   let addcat = "";
+  let addgalery = "";
 
   const atualizarProduto = async () => {
     try {
@@ -153,6 +154,7 @@ function Cript() {
             let tempserve = a.serve;
             let tempimg = a.img;
             let tempcat = a.category;
+            let tempgallery = a.galery;
             return (
               <div className="bg-white p-6 flex flex-col gap-4">
                 <h1 className="text-2xl">Produtos</h1>
@@ -228,6 +230,18 @@ function Cript() {
                     type="text"
                   />
                   <img className="w-[150px]" src={a.img} alt="" />
+                  <div>
+                    <h1>Galery</h1>
+                    <input
+                      onChange={(event) => {
+                        tempgallery = event.target.value.split(",");
+                        console.log(tempgallery);
+                      }}
+                      type="text"
+                      className="w-full border-1 rounded-md"
+                      placeholder={a.galery}
+                    />
+                  </div>
                 </div>
                 <button
                   onClick={() => {
@@ -243,6 +257,7 @@ function Cript() {
                             category: tempcat,
                             serve: tempserve,
                             img: tempimg,
+                            galery: tempgallery,
                           };
                         }
                         return b;
@@ -328,6 +343,16 @@ function Cript() {
                 type="text"
               />
             </div>
+            <div>
+              <h1>galery</h1>
+              <input
+                onChange={(event) => {
+                  addgalery = event.target.value;
+                }}
+                className="w-full border-2"
+                type="text"
+              />
+            </div>
             <button
               onClick={() => {
                 const newProduc = {
@@ -338,6 +363,7 @@ function Cript() {
                   description: adddesc,
                   category: addcat,
                   serve: Number(addserve),
+                  galery: addgalery,
                 };
                 const newList = {
                   ...FullList,

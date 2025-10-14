@@ -18,6 +18,7 @@ function SingleContent() {
 
   useEffect(() => {
     FilterSingle(Number(id));
+    console.log(FinalSingleList)
   }, []);
 
   if (Array.isArray(FinalSingleList)) {
@@ -103,10 +104,9 @@ function SingleContent() {
           <div className="flex flex-col items-center gap-4 text-[#2E4F4F]">
             <h1 className="poppins text-2xl">Mais Imagens</h1>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <img src="https://placehold.co/200" alt="" />
-              <img src="https://placehold.co/200" alt="" />
-              <img src="https://placehold.co/200" alt="" />
-              <img src="https://placehold.co/200" alt="" />
+              {FinalSingleList[0].galery.map((a) => {
+                return <img src={a}  alt="" />;
+              })}
             </div>
           </div>
         </div>
