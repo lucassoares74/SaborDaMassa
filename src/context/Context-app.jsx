@@ -38,7 +38,7 @@ export const ContextProvider = ({ children }) => {
   const [CartList, setCartList] = useState({
     items: [],
   });
-  const [islogged, setislogged] = useState(true);
+  const [islogged, setislogged] = useState(false);
 
   useEffect(() => {
     if (FullList) {
