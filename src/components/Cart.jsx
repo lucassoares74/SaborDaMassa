@@ -11,11 +11,13 @@ function Cart() {
   const [Payform, setPayform] = useState("");
   const [troco, settroco] = useState(0);
   const [logistica, setlogistica] = useState("");
-  const [rua, setrua] = useState();
-  const [bairro, setbairro] = useState();
-  const [Numero, setNumero] = useState();
+  const [rua, setrua] = useState("");
+  const [bairro, setbairro] = useState("");
+  const [Numero, setNumero] = useState("");
+  const [namepedido, setnamepedido] = useState("");
+  const [Valordaentrega, setValordaentrega] = useState(0);
   function Enviar_pedido() {
-    sendText = `Seu pedido sabor da massa: ${dataFormatada} \n`;
+    sendText = `*Seu pedido sabor da massa:* ${dataFormatada} \n`;
     CartList.items.map((a) => {
       sendText += `${a.qnt}x ${a.title} ${a.value.toLocaleString("pt-BR", {
         style: "currency",
@@ -24,12 +26,32 @@ function Cart() {
     });
     sendText =
       sendText +
-      `Forma de pagamento: ${Payform}\n` +
-      `Total: ${TotalValue.toLocaleString("pt-BR", {
+      `*Cliente:* ${namepedido} \n` +
+      `*Forma de pagamento:* ${Payform}\n` +
+      `*SubTotal:* ${TotalValue.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL",
       })} \n` +
-      `troco:${
+      `*Entrega:* ${Valordaentrega.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      })} \n` +
+      `*Total:* ${(TotalValue + Valordaentrega).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      })} \n` +
+      `*Valor Pago* ${
+        troco === 0
+          ? TotalValue.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })
+          : Number(troco).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })
+      } \n` +
+      `*Troco:* ${
         troco - TotalValue > 0
           ? (troco - TotalValue).toLocaleString("pt-BR", {
               style: "currency",
@@ -37,7 +59,7 @@ function Cart() {
             })
           : ""
       } \n` +
-      `Tipo de entrega: ${
+      `*Tipo de entrega:* ${
         logistica === "Retirada"
           ? "retirada"
           : rua + " n: " + Numero + " , " + bairro
@@ -104,34 +126,42 @@ function Cart() {
 
   function finalizarCompras() {
     if (CartList.items.length > 0) {
-      if (logistica !== "") {
-        if (Payform !== "") {
-          if (Payform === "Dinheiro") {
-            if (troco - TotalValue > 0) {
-              Enviar_pedido();
-              window.open(
-                `https://wa.me/5521970231071?text=${encodeURIComponent(
-                  sendText
-                )}`,
-                "_blank"
-              );
+      if (namepedido !== "") {
+        if (logistica !== "") {
+          if ((rua && Numero && bairro !== "") || logistica === "Retirada") {
+            if (Payform !== "") {
+              if (Payform === "Dinheiro") {
+                if (troco - TotalValue > 0 || troco === 0) {
+                  Enviar_pedido();
+                  window.open(
+                    `https://wa.me/5521970231071?text=${encodeURIComponent(
+                      sendText
+                    )}`,
+                    "_blank"
+                  );
+                } else {
+                  alert("Troco Invalido!");
+                }
+              } else {
+                Enviar_pedido();
+                window.open(
+                  `https://wa.me/5521970231071?text=${encodeURIComponent(
+                    sendText
+                  )}`,
+                  "_blank"
+                );
+              }
             } else {
-              alert("Troco Invalido!");
+              alert("selecione um metodo de pagamento!");
             }
           } else {
-            Enviar_pedido();
-            window.open(
-              `https://wa.me/5521970231071?text=${encodeURIComponent(
-                sendText
-              )}`,
-              "_blank"
-            );
+            alert("Digite o Endereço");
           }
         } else {
-          alert("selecione um metodo de pagamento!");
+          alert("Selecione Uma forma de entrega!");
         }
       } else {
-        alert("Selecione Uma forma de entrega!");
+        alert("Digite Seu nome");
       }
     } else {
       alert("selecione pelo menos um item!");
@@ -194,7 +224,7 @@ function Cart() {
           <h1>
             Valor Total:
             {" " +
-              TotalValue.toLocaleString("pt-BR", {
+              (TotalValue + Valordaentrega).toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL",
               })}
@@ -258,6 +288,7 @@ function Cart() {
             <input
               onChange={(event) => {
                 setlogistica(event.target.value);
+                setValordaentrega(3);
               }}
               type="radio"
               value="Entrega"
@@ -269,6 +300,7 @@ function Cart() {
             <input
               onChange={(event) => {
                 setlogistica(event.target.value);
+                setValordaentrega(0);
               }}
               type="radio"
               value="Retirada"
@@ -304,6 +336,16 @@ function Cart() {
             className="border-1"
             type="text"
             placeholder="Numero:"
+          />
+        </div>
+        <div className="flex gap-1">
+          <h1>Nome:</h1>
+          <input
+            onChange={(event) => {
+              setnamepedido(event.target.value);
+            }}
+            className="border-1 rounded-md w-full"
+            type="text"
           />
         </div>
         <div className="flex justify-center ">
