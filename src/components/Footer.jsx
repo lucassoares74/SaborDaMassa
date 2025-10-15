@@ -3,7 +3,7 @@ import { Facebook, Instagram } from "lucide-react";
 import { ContextApp } from "../context/Context-app";
 
 function Footer() {
-  const {FullList} = useContext(ContextApp)
+  const { FullList } = useContext(ContextApp);
   return (
     <div className="bg-[#2E4F4F] p-20 ">
       <div className="flex justify-center">
@@ -12,13 +12,11 @@ function Footer() {
 
       <div className="grid lg:grid-cols-3 mt-6 gap-4 lg:gap-0">
         <div className="flex flex-col lg:items-center text-[12px]">
+          <h1 className=" poppins text-white">localização e informações</h1>
+          <h1 className=" poppins text-white">CEP: 25230-070</h1>
           <h1 className=" poppins text-white">
-            localização e informações
+            ENDEREÇO: RUA DA FORTUNA, 67, PILAR
           </h1>
-          <h1 className=" poppins text-white">CEP: 25225-000</h1>
-          <h1 className=" poppins text-white">ENDEREÇO: RUA DA FORTUNA</h1>
-          <h1 className=" poppins text-white">NUMERO: 67</h1>
-          <h1 className=" poppins text-white">CNPJ: 2000/000-000</h1>
           <h1 className=" poppins text-white">
             NUMERO DE TELEFONE: 21-97023-1071
           </h1>
@@ -27,8 +25,23 @@ function Footer() {
         <div className="flex flex-col items-center">
           <h1 className="text-2xl poppins text-white">Redes sociais</h1>
           <div className="flex gap-2 text-white">
-            <Instagram></Instagram>
-            <Facebook></Facebook>
+            <button
+              onClick={() => {
+                window.open(
+                  "https://www.instagram.com/sabordamassapilar/",
+                  "_blank"
+                );
+              }}
+            >
+              <Instagram></Instagram>
+            </button>
+            <button
+              onClick={() => {
+                window.open("https://www.exemplo.com", "_blank");
+              }}
+            >
+              <Facebook></Facebook>
+            </button>
           </div>
         </div>
         <div className="flex flex-col">

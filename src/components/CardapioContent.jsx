@@ -23,22 +23,6 @@ function CardapioContent() {
     FullList,
   } = useContext(ContextApp);
 
-  useEffect(() => {
-    function handleClickFora(event) {
-      if (divRef.current && !divRef.current.contains(event.target)) {
-        setisMenuCardapioOpen(false);
-      }
-    }
-
-    if (isMenuCardapioOpen) {
-      document.addEventListener("mousedown", handleClickFora);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickFora);
-    };
-  }, [isMenuCardapioOpen]);
-
   return (
     <div>
       <div className="bg-[#F5F5DC] p-6 flex justify-center">

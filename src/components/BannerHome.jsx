@@ -20,7 +20,7 @@ function BannerHome() {
             Sabor da Massa
           </h1>
           <p class="text-lg text-gray-400 mb-6">
-            Tradicionalmente fresco, moderadamente delicioso.
+            Onde o café encontra o carinho artesanal.
           </p>
           <button className="inline-block bg-[#F5F5DC] hover:bg-amber-300 text-green-900 lato py-2 px-6 rounded-lg transition duration-300">
             <Link to="/Cardapio">Ver Cardápio</Link>

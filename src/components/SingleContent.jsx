@@ -18,9 +18,49 @@ function SingleContent() {
 
   useEffect(() => {
     FilterSingle(Number(id));
-    console.log(FinalSingleList)
+    console.log(FinalSingleList);
   }, []);
 
+  function addcart() {
+    setIsCartOpen(true);
+    const newItem = {
+      id: FinalSingleList[0].id,
+      qnt: 1,
+      img: FinalSingleList[0].img,
+      title: FinalSingleList[0].title,
+      value: FinalSingleList[0].value,
+      originalValue: FinalSingleList[0].value,
+    };
+    let hasItem = false;
+    CartList.items.map((a) => {
+      if (a.id === FinalSingleList[0].id) {
+        hasItem = true;
+      }
+    });
+    console.log(hasItem);
+    if (hasItem === false) {
+      setCartList((prev) => ({
+        ...prev,
+        items: [...prev.items, newItem],
+      }));
+    } else {
+      setCartList((prev) => ({
+        ...prev,
+        items: prev.items.map((item) => {
+          if (item.id === FinalSingleList[0].id) {
+            const novaQnt = item.qnt + 1;
+            return {
+              ...item,
+              qnt: novaQnt,
+              value: item.originalValue * novaQnt,
+            };
+          }
+          return item;
+        }),
+      }));
+    }
+  }
+  
   if (Array.isArray(FinalSingleList)) {
     return (
       <div className="flex bg-[#FAFAE0]  justify-center">
@@ -58,43 +98,7 @@ function SingleContent() {
             </h1>
             <button
               onClick={() => {
-                setIsCartOpen(true);
-                const newItem = {
-                  id: FinalSingleList[0].id,
-                  qnt: 1,
-                  img: FinalSingleList[0].img,
-                  title: FinalSingleList[0].title,
-                  value: FinalSingleList[0].value,
-                  originalValue: FinalSingleList[0].value,
-                };
-                let hasItem = false;
-                CartList.items.map((a) => {
-                  if (a.id === FinalSingleList[0].id) {
-                    hasItem = true;
-                  }
-                });
-                console.log(hasItem);
-                if (hasItem === false) {
-                  setCartList((prev) => ({
-                    ...prev,
-                    items: [...prev.items, newItem],
-                  }));
-                } else {
-                  setCartList((prev) => ({
-                    ...prev,
-                    items: prev.items.map((item) => {
-                      if (item.id === FinalSingleList[0].id) {
-                        const novaQnt = item.qnt + 1;
-                        return {
-                          ...item,
-                          qnt: novaQnt,
-                          value: item.originalValue * novaQnt,
-                        };
-                      }
-                      return item;
-                    }),
-                  }));
-                }
+                addcart();
               }}
               className="bg-[#2E4F4F] rounded-md p-2 text-white poppins hover:bg-amber-300"
             >
@@ -105,7 +109,7 @@ function SingleContent() {
             <h1 className="poppins text-2xl">Mais Imagens</h1>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {FinalSingleList[0].galery.map((a) => {
-                return <img src={a}  alt="" />;
+                return <img src={a} alt="" />;
               })}
             </div>
           </div>

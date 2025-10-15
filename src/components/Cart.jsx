@@ -5,18 +5,15 @@ import { Trash2 } from "lucide-react";
 function Cart() {
   const dataFormatada = new Date().toLocaleString();
   const divRef = useRef(null);
-
   const { IsCartOpen, CartList, setCartList, TotalValue, setIsCartOpen } =
     useContext(ContextApp);
   let sendText = `Seu pedido sabor da massa: ${dataFormatada} \n`;
   const [Payform, setPayform] = useState("");
   const [troco, settroco] = useState(0);
   const [logistica, setlogistica] = useState("");
-
   const [rua, setrua] = useState();
   const [bairro, setbairro] = useState();
   const [Numero, setNumero] = useState();
-
   function Enviar_pedido() {
     sendText = `Seu pedido sabor da massa: ${dataFormatada} \n`;
     CartList.items.map((a) => {
@@ -80,6 +77,66 @@ function Cart() {
       }),
     }));
   }
+
+  function _delete(a) {
+    setCartList((prev) => ({
+      ...prev,
+      items: prev.items.filter((item) => item.id !== a.id),
+    }));
+  }
+
+  function increase(b) {
+    setCartList((prev) => ({
+      ...prev,
+      items: prev.items.map((item) => {
+        if (item.id === b.id) {
+          const novaQnt = item.qnt + 1;
+          return {
+            ...item,
+            qnt: novaQnt,
+            value: item.originalValue * novaQnt,
+          };
+        }
+        return item;
+      }),
+    }));
+  }
+
+  function finalizarCompras() {
+    if (CartList.items.length > 0) {
+      if (logistica !== "") {
+        if (Payform !== "") {
+          if (Payform === "Dinheiro") {
+            if (troco - TotalValue > 0) {
+              Enviar_pedido();
+              window.open(
+                `https://wa.me/5521970231071?text=${encodeURIComponent(
+                  sendText
+                )}`,
+                "_blank"
+              );
+            } else {
+              alert("Troco Invalido!");
+            }
+          } else {
+            Enviar_pedido();
+            window.open(
+              `https://wa.me/5521970231071?text=${encodeURIComponent(
+                sendText
+              )}`,
+              "_blank"
+            );
+          }
+        } else {
+          alert("selecione um metodo de pagamento!");
+        }
+      } else {
+        alert("Selecione Uma forma de entrega!");
+      }
+    } else {
+      alert("selecione pelo menos um item!");
+    }
+  }
   return (
     <div
       ref={divRef}
@@ -100,20 +157,7 @@ function Cart() {
                   <div className="flex gap-4 font-extrabold poppins">
                     <button
                       onClick={() => {
-                        setCartList((prev) => ({
-                          ...prev,
-                          items: prev.items.map((item) => {
-                            if (item.id === a.id) {
-                              const novaQnt = item.qnt + 1;
-                              return {
-                                ...item,
-                                qnt: novaQnt,
-                                value: item.originalValue * novaQnt,
-                              };
-                            }
-                            return item;
-                          }),
-                        }));
+                        increase(a);
                       }}
                     >
                       +
@@ -129,10 +173,7 @@ function Cart() {
                   </div>
                   <button
                     onClick={() => {
-                      setCartList((prev) => ({
-                        ...prev,
-                        items: prev.items.filter((item) => item.id !== a.id),
-                      }));
+                      _delete(a);
                     }}
                   >
                     <Trash2></Trash2>
@@ -178,7 +219,9 @@ function Cart() {
               type="radio"
               name="pagamento"
               value="Dinheiro"
-              onChange={(e) => setPayform(e.target.value)}
+              onChange={(e) => {
+                setPayform(e.target.value);
+              }}
             />
             Dinheiro
           </label>
@@ -196,10 +239,10 @@ function Cart() {
           </label>
         </div>
         <div
-          className={
-            Payform === "Dinheiro" ? "flex flex-col gap-1 " : "hidden"
-          }
-        > <h1>Troco:</h1>
+          className={Payform === "Dinheiro" ? "flex flex-col gap-1 " : "hidden"}
+        >
+          {" "}
+          <h1>Troco:</h1>
           <input
             onChange={(event) => {
               settroco(event.target.value);
@@ -207,6 +250,7 @@ function Cart() {
             className="border-1 "
             type="text"
             placeholder="troco pra quanto?"
+            value={troco}
           />
         </div>
         <div className="flex gap-2 justify-center border-1 rounded-md ">
@@ -265,39 +309,7 @@ function Cart() {
         <div className="flex justify-center ">
           <button
             onClick={() => {
-              if (CartList.items.length > 0) {
-                if (logistica !== "") {
-                  if (Payform !== "") {
-                    if (Payform === "Dinheiro") {
-                      if (troco - TotalValue > 0) {
-                        Enviar_pedido();
-                        window.open(
-                          `https://wa.me/5521970231071?text=${encodeURIComponent(
-                            sendText
-                          )}`,
-                          "_blank"
-                        );
-                      } else {
-                        alert("Troco Invalido!");
-                      }
-                    } else {
-                      Enviar_pedido();
-                      window.open(
-                        `https://wa.me/5521970231071?text=${encodeURIComponent(
-                          sendText
-                        )}`,
-                        "_blank"
-                      );
-                    }
-                  } else {
-                    alert("selecione um metodo de pagamento!");
-                  }
-                } else {
-                  alert("Selecione Uma forma de entrega!");
-                }
-              } else {
-                alert("selecione pelo menos um item!");
-              }
+              finalizarCompras();
             }}
             className="p-2 bg-[#2E4F4F] rounded-md hover:bg-amber-300 text-white"
           >

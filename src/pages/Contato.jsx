@@ -33,16 +33,24 @@ function Contato() {
                   <h1 className="sm:text-2xl ">CEP:</h1>
                 </div>
                 <div className=" ">
-                  <h1 className="p-1 ">(21)99824-1998</h1>
+                  <h1 className="p-1 ">(21)97023-1071</h1>
                   <h1 className="p-1 ">Sabordamassa@gmail.com</h1>
                   <h1 className="p-1 ">Rua da Fortuna nº67</h1>
                   <h1 className="p-1 ">Pilar</h1>
                   <h1 className="p-1 ">Duque de Caixas</h1>
-                  <h1 className="p-1 ">25225-660</h1>
+                  <h1 className="p-1 ">25230-070</h1>
                 </div>
               </div>
               <div className="flex justify-center">
-                <button className="bg-[#2E4F4F] p-2 rounded-md hover:bg-amber-300 text-white">
+                <button
+                  onClick={() => {
+                    window.open(
+                      "https://wa.me/5521970231017?text=Oi%2C%20gostaria%20de%20fazer%20um%20pedido%20no%20Sabor%20da%20Massa%20%F0%9F%8D%9D",
+                      "_blank"
+                    );
+                  }}
+                  className="bg-[#2E4F4F] p-2 rounded-md hover:bg-amber-300 text-white"
+                >
                   Mandar Mensagem
                 </button>
               </div>
