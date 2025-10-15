@@ -138,6 +138,6 @@ export const ContextProvider = ({ children }) => {
       </ContextApp.Provider>
     );
   } else {
-    return <div>Carregando</div>;
+    return <div></div>;
   }
 };
