@@ -59,10 +59,10 @@ function Cart() {
             })
           : ""
       } \n` +
-      `*Tipo de entrega:* ${
+      `*Logistica:* ${
         logistica === "Retirada"
           ? "retirada"
-          : rua + " n: " + Numero + " , " + bairro
+          : "Entrega " + rua + " n: " + Numero + " , " + bairro
       }`;
     console.log(sendText);
   }
