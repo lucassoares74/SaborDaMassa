@@ -347,7 +347,7 @@ function Cript() {
               <h1>galery</h1>
               <input
                 onChange={(event) => {
-                  addgalery = event.target.value;
+                  addgalery = event.target.value.split(",");
                 }}
                 className="w-full border-2"
                 type="text"
