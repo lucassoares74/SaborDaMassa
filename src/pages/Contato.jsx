@@ -45,7 +45,7 @@ function Contato() {
                 <button
                   onClick={() => {
                     window.open(
-                      "https://wa.me/5521970231017?text=Oi%2C%20gostaria%20de%20fazer%20um%20pedido%20no%20Sabor%20da%20Massa%20%F0%9F%8D%9D",
+                      "https://wa.me/5521970231071?text=Oi%2C%20gostaria%20de%20fazer%20um%20pedido%20no%20Sabor%20da%20Massa%20%F0%9F%8D%9D",
                       "_blank"
                     );
                   }}
