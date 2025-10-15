@@ -21,6 +21,12 @@ function SingleContent() {
     console.log(FinalSingleList);
   }, []);
 
+  useEffect(() => {
+    if (id === null) {
+      window.location.replace("/");
+    }
+  }, []);
+
   function addcart() {
     setIsCartOpen(true);
     const newItem = {
@@ -60,7 +66,7 @@ function SingleContent() {
       }));
     }
   }
-  
+
   if (Array.isArray(FinalSingleList)) {
     return (
       <div className="flex bg-[#FAFAE0]  justify-center">
