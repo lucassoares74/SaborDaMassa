@@ -19,6 +19,8 @@ function SingleContent() {
   const [Adicional, setAdicional] = useState([[""], [0], [0]]);
   const [primarioLimit, setprimarioLimit] = useState(3);
   const [secundarioLimit, setsecundarioLimit] = useState(2);
+  const [countt, setcountt] = useState(0);
+  const [countt2, setcountt2] = useState(0);
 
   function atualizarAdicional(id, checado) {
     setAdicional((prev) => {
@@ -195,10 +197,30 @@ function SingleContent() {
                 <div className="flex gap-2">
                   <input
                     onChange={(event) => {
-                      atualizarAdicional(i + 1, event.target.checked);
-                      atualizarValoresAdicionais(a.value, event.target.checked);
-                      atualizarAdicionalNome(a.item, event.target.checked);
-                      console.log(Adicional);
+                      const isMarcando = event.target.checked;
+
+                      // Se estiver desmarcando, sempre permite
+                      if (!isMarcando) {
+                        atualizarAdicional(i + 1, false);
+                        atualizarValoresAdicionais(a.value, false);
+                        atualizarAdicionalNome(a.item, false);
+                        setcountt2((prev) => prev - 1);
+                        return;
+                      }
+
+                      // Se estiver marcando, verifica o limite
+                      if (primarioLimit > countt2) {
+                        setcountt2((prev) => prev + 1);
+                        atualizarAdicional(i + 1, true);
+                        atualizarValoresAdicionais(a.value, true);
+                        atualizarAdicionalNome(a.item, true);
+                        console.log(Adicional);
+                      } else {
+                        // Impede a marcação se já atingiu o limite
+                        event.preventDefault(); // impede visualmente
+                        event.target.checked = false; // desfaz a marcação
+                        console.log("Limite de adicionais atingido!");
+                      }
                     }}
                     type="checkbox"
                   />
@@ -223,10 +245,30 @@ function SingleContent() {
                 <div className="flex gap-2">
                   <input
                     onChange={(event) => {
-                      atualizarAdicional(i + 4, event.target.checked);
-                      atualizarValoresAdicionais(a.value, event.target.checked);
-                      atualizarAdicionalNome(a.item, event.target.checked);
-                      console.log(Adicional);
+                      const isMarcando = event.target.checked;
+
+                      // Se estiver desmarcando, sempre permite
+                      if (!isMarcando) {
+                        atualizarAdicional(i + 4, false);
+                        atualizarValoresAdicionais(a.value, false);
+                        atualizarAdicionalNome(a.item, false);
+                        setcountt((prev) => prev - 1);
+                        return;
+                      }
+
+                      // Se estiver marcando, verifica o limite
+                      if (secundarioLimit > countt) {
+                        setcountt((prev) => prev + 1);
+                        atualizarAdicional(i + 4, true);
+                        atualizarValoresAdicionais(a.value, true);
+                        atualizarAdicionalNome(a.item, true);
+                        console.log(Adicional);
+                      } else {
+                        // Impede a marcação se já atingiu o limite
+                        event.preventDefault(); // impede visualmente
+                        event.target.checked = false; // desfaz a marcação
+                        console.log("Limite de adicionais atingido!");
+                      }
                     }}
                     type="checkbox"
                   />
