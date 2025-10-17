@@ -3,6 +3,7 @@ import { ContextApp } from "../context/Context-app";
 import { Trash2 } from "lucide-react";
 
 function Cart() {
+
   const dataFormatada = new Date().toLocaleString();
   const divRef = useRef(null);
   const { IsCartOpen, CartList, setCartList, TotalValue, setIsCartOpen } =
@@ -177,14 +178,22 @@ function Cart() {
       <div className="flex flex-col gap-2">
         {CartList.items.map((a) => {
           return (
-            <div className="grid grid-cols-2 gap-2 items-center">
+            <div className="flex flex-col gap-2 items-center border-1 rounded-md">
               <div>
                 <img src={a.img} alt="" />
               </div>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1 items-center">
                 <h1>{a.title}</h1>
-                <div className="flex gap-6 justify-center">
-                  <div className="flex gap-4 font-extrabold poppins">
+                <div className="text-gray-600 -mt-5 text-[10px] text-justify">
+                  {a.adicional[0].map((item, index) => (
+                    <span key={index}>
+                      {item}
+                      <br />
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-6 justify-center border-1 rounded-md">
+                  <div className="flex gap-2 font-extrabold poppins">
                     <button
                       onClick={() => {
                         increase(a);
@@ -202,6 +211,7 @@ function Cart() {
                     </button>
                   </div>
                   <button
+                    className="-ml-4"
                     onClick={() => {
                       _delete(a);
                     }}
