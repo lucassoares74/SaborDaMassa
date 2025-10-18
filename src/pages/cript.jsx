@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { ContextApp } from "../context/Context-app";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -14,6 +14,7 @@ function Cript() {
   let chfimg = FullList.ChefInfo.img;
   let categorias = FullList.categorias;
 
+  const [tur, settur] = useState();
   let addtitle = "";
   let adddesc = "";
   let addvalue = "";
@@ -155,6 +156,13 @@ function Cript() {
             let tempimg = a.img;
             let tempcat = a.category;
             let tempgallery = a.galery;
+            let tempprimariosname = a.adicionais_um.map((a) => a.item);
+            let tempsecundariosname = a.adicionais_dois.map((a) => a.item);
+            let tempprimariosvalue = a.adicionais_um.map((a) => a.value);
+            let tempsecundariosvalue = a.adicionais_dois.map((a) => a.value);
+            let add1 = a.addprimarios;
+            let add2 = a.addsecundario;
+
             return (
               <div className="bg-white p-6 flex flex-col gap-4">
                 <h1 className="text-2xl">Produtos</h1>
@@ -242,6 +250,89 @@ function Cript() {
                       placeholder={a.galery}
                     />
                   </div>
+                  <div>
+                    <h1>Adicionais?</h1>
+                    <div>
+                      <h1>Primario</h1>
+                      <button
+                        onClick={() => {
+                          add1 = true;
+                          alert(add1);
+                        }}
+                        className="bg-green-400"
+                      >
+                        Sim
+                      </button>
+                      <button
+                        onClick={() => {
+                          add1 = false;
+                          alert(add1);
+                        }}
+                        className="bg-red-400"
+                      >
+                        Não
+                      </button>
+                    </div>
+                    <div>
+                      <h1>Secundario</h1>{" "}
+                      <button
+                        onClick={() => {
+                          add2 = true;
+                          alert(add2);
+                        }}
+                        className="bg-green-400"
+                      >
+                        Sim
+                      </button>
+                      <button
+                        onClick={() => {
+                          add2 = false;
+                          alert(add2);
+                        }}
+                        className="bg-red-400"
+                      >
+                        Não
+                      </button>
+                    </div>
+                    <div>
+                      <h1>Primario:</h1>
+                      <input
+                        onChange={(event) => {
+                          tempprimariosname = event.target.value.split(",");
+                        }}
+                        className="border-1 rounded-md w-full"
+                        placeholder={tempprimariosname}
+                        type="text"
+                      />
+                      <input
+                        onChange={(event) => {
+                          tempprimariosvalue = event.target.value.split(",");
+                        }}
+                        className="border-1 rounded-md w-full"
+                        placeholder={tempprimariosvalue}
+                        type="text"
+                      />
+                    </div>
+                    <div>
+                      <h1>Secundario:</h1>{" "}
+                      <input
+                        onChange={(event) => {
+                          tempsecundariosname = event.target.value.split(",");
+                        }}
+                        className="border-1 rounded-md w-full"
+                        placeholder={tempsecundariosname}
+                        type="text"
+                      />
+                      <input
+                        onChange={(event) => {
+                          tempsecundariosvalue = event.target.value.split(",");
+                        }}
+                        className="border-1 rounded-md w-full"
+                        placeholder={tempsecundariosvalue}
+                        type="text"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <button
                   onClick={() => {
@@ -258,6 +349,20 @@ function Cript() {
                             serve: tempserve,
                             img: tempimg,
                             galery: tempgallery,
+                            addprimarios: add1,
+                            addsecundario: add2,
+                            adicionais_um: tempprimariosname.map((a, i) => {
+                              return {
+                                item: a,
+                                value: Number(tempprimariosvalue[i]),
+                              };
+                            }),
+                            adicionais_dois: tempsecundariosname.map((a, i) => {
+                              return {
+                                item: a,
+                                value: Number(tempsecundariosvalue[i]),
+                              };
+                            }),
                           };
                         }
                         return b;
@@ -265,6 +370,7 @@ function Cript() {
                     };
                     setFullList(newList);
                     alert("Produto Atulizado com Sucesso");
+                    console.log(newList);
                   }}
                   className="bg-green-400 px-6 py-2"
                 >

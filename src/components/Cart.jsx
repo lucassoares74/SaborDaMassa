@@ -17,13 +17,16 @@ function Cart() {
   const [Numero, setNumero] = useState("");
   const [namepedido, setnamepedido] = useState("");
   const [Valordaentrega, setValordaentrega] = useState(0);
+
+
   function Enviar_pedido() {
     sendText = `*Seu pedido sabor da massa:* ${dataFormatada} \n`;
     CartList.items.map((a) => {
       sendText += `${a.qnt}x ${a.title} ${a.value.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL",
-      })} ................\n`;
+      })}................\n` + `_${a.adicional[0].slice(1).join("\n")}_ \n`;
+
     });
     sendText =
       sendText +

@@ -188,7 +188,7 @@ function SingleContent() {
               Adicionar ao carrinho
             </button>
           </div>
-          <div className="flex flex-col gap-2 items-center">
+          <div className={`${FinalSingleList[0].addprimarios ? "flex flex-col gap-2 items-center": "hidden"}`}>
             <h1 className="poppins text-2xl text-[#2E4F4F]">
               Adicionais Primarios
             </h1>
@@ -236,7 +236,7 @@ function SingleContent() {
               );
             })}
           </div>
-          <div className="flex flex-col gap-2 items-center">
+          <div className={`${FinalSingleList[0].addsecundario ? "flex flex-col gap-2 items-center":"hidden" }`}>
             <h1 className="poppins text-2xl text-[#2E4F4F]">
               Adicionais Secundarios
             </h1>
@@ -267,7 +267,7 @@ function SingleContent() {
                         // Impede a marcação se já atingiu o limite
                         event.preventDefault(); // impede visualmente
                         event.target.checked = false; // desfaz a marcação
-                        console.log("Limite de adicionais atingido!");
+                        console.log("Limite de adicionais atingido!"); 
                       }
                     }}
                     type="checkbox"
