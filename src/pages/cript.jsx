@@ -22,6 +22,12 @@ function Cript() {
   let addimg = "";
   let addcat = "";
   let addgalery = "";
+  let addprimaryisneeded = true;
+  let addsecundaryisneeded = true;
+  let addprimaryname = "";
+  let addpriaryvlaue = "";
+  let addsecundaryname = "";
+  let addsecundaryvalue = "";
 
   const atualizarProduto = async () => {
     try {
@@ -459,6 +465,83 @@ function Cript() {
                 type="text"
               />
             </div>
+            <div>
+              <h1>adicionais?</h1>
+              <h1>primarios:</h1>
+              <button
+                onClick={() => {
+                  addprimaryisneeded = true;
+                  alert(addprimaryisneeded);
+                }}
+                className="bg-green-400"
+              >
+                Sim
+              </button>
+              <button
+                onClick={() => {
+                  addprimaryisneeded = false;
+                  alert(addprimaryisneeded);
+                }}
+                className="bg-red-400"
+              >
+                Não
+              </button>
+              <h1>secundarios:</h1>
+              <button
+                onClick={() => {
+                  addsecundaryisneeded = true;
+                  alert(addsecundaryisneeded);
+                }}
+                className="bg-green-400"
+              >
+                Sim
+              </button>
+              <button
+                onClick={() => {
+                  addsecundaryisneeded = false;
+                  alert(addsecundaryisneeded);
+                }}
+                className="bg-red-400"
+              >
+                Não
+              </button>
+            </div>
+            <div className="border-1 rounded-md">
+              <h1>primario nome:</h1>
+              <input
+                onChange={(event) => {
+                  addprimaryname = event.target.value.split(",");
+                }}
+                className="border-2 w-full"
+                type="text"
+              />
+              <h1>primario valores</h1>
+              <input
+                onChange={(event) => {
+                  addpriaryvlaue = event.target.value.split(",");
+                }}
+                className="border-2 w-full"
+                type="text"
+              />
+            </div>
+            <div className="border-1 rounded-md">
+              <h1>secundarios nome:</h1>
+              <input
+                onChange={(event) => {
+                  addsecundaryname = event.target.value.split(",");
+                }}
+                className="border-2 w-full"
+                type="text"
+              />
+              <h1>secundarios valores</h1>
+              <input
+                onChange={(event) => {
+                  addsecundaryvalue = event.target.value.split(",");
+                }}
+                className="border-2 w-full"
+                type="text"
+              />
+            </div>
             <button
               onClick={() => {
                 const newProduc = {
@@ -470,12 +553,23 @@ function Cript() {
                   category: addcat,
                   serve: Number(addserve),
                   galery: addgalery,
+                  addprimarios: addprimaryisneeded,
+                  addsecundario: addsecundaryisneeded,
+                  adicionais_um: addprimaryname.map((a, i) => ({
+                    item: a,
+                    value: Number(addpriaryvlaue[i]),
+                  })),
+                  adicionais_dois: addsecundaryname.map((a, i) => ({
+                    item: a,
+                    value: Number(addsecundaryvalue[i]),
+                  })),
                 };
                 const newList = {
                   ...FullList,
                   produtos: [...FullList.produtos, newProduc],
                 };
                 setFullList(newList);
+                alert("Produto Adicionado com sucesso");
               }}
               className="bg-green-500 w-full"
             >
