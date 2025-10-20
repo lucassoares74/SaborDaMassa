@@ -28,6 +28,8 @@ function Cript() {
   let addpriaryvlaue = "";
   let addsecundaryname = "";
   let addsecundaryvalue = "";
+  let addprimario_limit = 3;
+  let addsecundario_limit = 3;
 
   const atualizarProduto = async () => {
     try {
@@ -168,6 +170,8 @@ function Cript() {
             let tempsecundariosvalue = a.adicionais_dois.map((a) => a.value);
             let add1 = a.addprimarios;
             let add2 = a.addsecundario;
+            let tempprimario_limit = a.primario_limit;
+            let tempsecundario_limit = a.secundario_limit;
 
             return (
               <div className="bg-white p-6 flex flex-col gap-4">
@@ -338,6 +342,26 @@ function Cript() {
                         type="text"
                       />
                     </div>
+                    <div>
+                      <h1>Primario limit:</h1>
+                      <input
+                        placeholder={tempprimario_limit}
+                        onChange={(event) => {
+                          tempprimario_limit = event.target.value;
+                        }}
+                        className="border-1"
+                        type="text"
+                      />
+                      <h1>Secundario limit:</h1>
+                      <input
+                        placeholder={tempsecundario_limit}
+                        onChange={(event) => {
+                          tempsecundario_limit = event.target.value;
+                        }}
+                        className="border-1"
+                        type="text"
+                      />
+                    </div>
                   </div>
                 </div>
                 <button
@@ -356,6 +380,8 @@ function Cript() {
                             img: tempimg,
                             galery: tempgallery,
                             addprimarios: add1,
+                            primario_limit: Number(tempprimario_limit),
+                            secundario_limit: Number(tempsecundario_limit),
                             addsecundario: add2,
                             adicionais_um: tempprimariosname.map((a, i) => {
                               return {
@@ -542,6 +568,24 @@ function Cript() {
                 type="text"
               />
             </div>
+            <div>
+              <h1>Primario limit:</h1>
+              <input
+                onChange={(event) => {
+                  addprimario_limit = event.target.value;
+                }}
+                className="border-1"
+                type="text"
+              />
+              <h1>Secundario limit:</h1>
+              <input
+                onChange={(event) => {
+                  addsecundario_limit = event.target.value;
+                }}
+                className="border-1"
+                type="text"
+              />
+            </div>
             <button
               onClick={() => {
                 const newProduc = {
@@ -563,6 +607,8 @@ function Cript() {
                     item: a,
                     value: Number(addsecundaryvalue[i]),
                   })),
+                  primario_limit: Number(addprimario_limit),
+                  secundario_limit: Number(addsecundario_limit),
                 };
                 const newList = {
                   ...FullList,

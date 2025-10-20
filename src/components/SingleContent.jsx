@@ -17,8 +17,9 @@ function SingleContent() {
   const id = searchParams.get("id");
   const uniqueid = Date.now() * 1000 + Math.floor(Math.random() * 1000);
   const [Adicional, setAdicional] = useState([[""], [0], [0]]);
-  const [primarioLimit, setprimarioLimit] = useState(3);
-  const [secundarioLimit, setsecundarioLimit] = useState(2);
+  const [primarioLimit, setprimarioLimit] = useState(2);
+  const [secundarioLimit, setsecundarioLimit] = useState(3);
+
   const [countt, setcountt] = useState(0);
   const [countt2, setcountt2] = useState(0);
 
@@ -86,6 +87,13 @@ function SingleContent() {
       window.location.replace("/");
     }
   }, []);
+
+  useEffect(() => {
+    if (Array.isArray(FinalSingleList)) {
+      setprimarioLimit(FinalSingleList[0].primario_limit);
+      setsecundarioLimit(FinalSingleList[0].secundario_limit);
+    }
+  }, [FinalSingleList]);
 
   function addcart() {
     setIsCartOpen(true);
@@ -188,7 +196,13 @@ function SingleContent() {
               Adicionar ao carrinho
             </button>
           </div>
-          <div className={`${FinalSingleList[0].addprimarios ? "flex flex-col gap-2 items-center": "hidden"}`}>
+          <div
+            className={`${
+              FinalSingleList[0].addprimarios
+                ? "flex flex-col gap-2 items-center"
+                : "hidden"
+            }`}
+          >
             <h1 className="poppins text-2xl text-[#2E4F4F]">
               Adicionais Primarios
             </h1>
@@ -236,7 +250,13 @@ function SingleContent() {
               );
             })}
           </div>
-          <div className={`${FinalSingleList[0].addsecundario ? "flex flex-col gap-2 items-center":"hidden" }`}>
+          <div
+            className={`${
+              FinalSingleList[0].addsecundario
+                ? "flex flex-col gap-2 items-center"
+                : "hidden"
+            }`}
+          >
             <h1 className="poppins text-2xl text-[#2E4F4F]">
               Adicionais Secundarios
             </h1>
@@ -267,7 +287,7 @@ function SingleContent() {
                         // Impede a marcação se já atingiu o limite
                         event.preventDefault(); // impede visualmente
                         event.target.checked = false; // desfaz a marcação
-                        console.log("Limite de adicionais atingido!"); 
+                        console.log("Limite de adicionais atingido!");
                       }
                     }}
                     type="checkbox"
